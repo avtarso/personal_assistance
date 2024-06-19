@@ -1,0 +1,35 @@
+{% extends 'quotes/base.html' %}
+
+{% block title %} {{tag_name}} quotes list{% endblock %}
+
+{% block content %}
+
+<h1>List of quotes with tag - {{tag_name}}</h1>
+<ul>
+    {% for quote in quotes %}
+        <li>
+
+            <strong>{{ quote.text }}</strong><br /><br />
+
+
+            <a href="{% url 'quotes:author_detail' quote.author.id %}">
+            {{quote.author}}</a><br />
+            <i><strong>Tags:</strong></i>
+            {% for tag in quote.tags.all %}
+
+            <a href="{% url 'quotes:tag_quotes' tag.id %}">
+            {{ tag.name }}</a>
+            
+            
+            {% if not forloop.last %}, {% endif %}
+            {% endfor %}<br />
+            <small>Added by: {% if quote.added_by %} {{ quote.added_by.username }} 
+                                    {% else %}Unknown{% endif %} </small>
+                                    <br /><br />
+        </li>
+    {% endfor %}
+</ul>
+<!--
+<a href="{% url 'quotes:author_list' %}">Back to Author List</a><br />
+  -->
+{% endblock %}

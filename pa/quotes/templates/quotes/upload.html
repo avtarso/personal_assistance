@@ -1,0 +1,15 @@
+{% extends 'quotes/base.html' %}
+
+{% block title %}Add Tag{% endblock %}
+
+{% block content %}
+<h1>Upload file</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+</form>
+
+{% endblock %}
+
+

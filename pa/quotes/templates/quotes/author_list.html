@@ -1,0 +1,20 @@
+{% extends 'quotes/base.html' %}
+
+{% block title %}Authot list{% endblock %}
+
+{% block content %}
+<h1>List of Authors</h1>
+<ul>
+    {% for author in authors %}
+        <li>
+            <a href="{% url 'quotes:author_detail' author.id %}">
+                {{ author.fullname }}
+            </a> <!--- Born: {{ author.born_date }} in {{ author.born_location }} 
+            <small> - Added by:</small> {% if author.added_by %} {{ author.added_by.username }} 
+                                    {% else %}Unknown{% endif %} -->
+        </li>
+    {% endfor %}
+</ul>
+{% if user.is_authenticated %}
+<a href="{% url 'quotes:add_author' %}">Add a new Author</a>{% endif %}
+{% endblock %}

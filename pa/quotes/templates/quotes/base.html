@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'favicon.png' %}"/>
+    <title>{% block title %}My Django Site{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Best Quotes Site</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="{% url 'main' %}">Home</a></li>
+                <li><a href="{% url 'quotes:author_list' %}">Authors</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'quotes:add_author' %}">Add Author</a></li>
+                {% endif %}
+                <li><a href="{% url 'quotes:tag_list' %}">Tags</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'quotes:add_tag' %}">Add Tag</a></li>
+                {% endif %}
+                <li><a href="{% url 'quotes:quote_list' %}">Quotes</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'quotes:add_quote' %}">Add Quote</a></li>
+                {% endif %}
+                {% if not user.is_authenticated %}
+                <li><a href="{% url 'users:login' %}">Login</a></li>
+                <li><a href="{% url 'users:register' %}">Register</a></li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'users:profile' %}">Profile</a></li>
+                <li><a href="{% url 'users:logout' %}">Logout</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Best Quotes Site</p>
+    </footer>
+</body>
+</html>

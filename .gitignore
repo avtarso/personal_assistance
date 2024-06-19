@@ -1,0 +1,11 @@
+paenv
+paenv/
+__pycache__
+__pycache__/
+notes
+notes/
+drafts
+drafts/
+pa/db.sqlite3
+pa/static/1.txt
+pa/static/static.static

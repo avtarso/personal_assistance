@@ -1,0 +1,26 @@
+{% extends 'quotes/base.html' %}
+
+{% block title %}{{ author.fullname }} - Author Details{% endblock %}
+
+{% block content %}
+
+<h1>{{ author.fullname }}</h1>
+
+<p><strong>Born:</strong>{{ author.born_date }} in {{ author.born_location }}</p>
+<p><strong>Description:</strong> {{ author.description }}</p>
+<p><strong>Added by:</strong> {% if author.added_by %} {{ author.added_by.username }} 
+                                    {% else %}Unknown{% endif %} </p>
+<!--
+<a href="{% url 'quotes:author_list' %}">Back to Author List</a><br />
+<a href="{% url 'quotes:add_author' %}">Add a new Author</a><br />
+-->
+
+{% if author_quote_counts > 0 %}
+    <a href="{% url 'quotes:author_quotes' author.id %}">You can read {{ author_quote_counts }} quotes from {{ author.fullname }} in this site</a>
+{% else %}
+    You can read {{ author_quote_counts }} quotes from {{ author.fullname }} in this site
+{% endif %}
+
+  
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{% extends 'quotes/base.html' %}
+
+{% block title %}Upload Authors{% endblock %}
+
+{% block content %}
+<h1>Upload file with authors</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload authors</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'quotes/base.html' %}
+
+{% block title %}List of Tags{% endblock %}
+
+{% block content %}
+
+<h1>List of Tags</h1>
+<ul>
+    {% for tag in tags_with_counts %}
+    <li>
+        
+        <strong>{{ tag.name }}</strong> <!--<small>Added by: {% if tag.added_by %} {{ tag.added_by.username }} 
+        {% else %}Unknown{% endif %}</small>--> - <a href="{% url 'quotes:tag_quotes' tag.id %}">{{ tag.num_quotes }} quotes</a> 
+
+    </li>
+    {% endfor %}
+</ul>
+{% if user.is_authenticated %}
+<a href="{% url 'quotes:add_tag' %}">Add a new Tag</a>{% endif %}
+  
+{% endblock %}
