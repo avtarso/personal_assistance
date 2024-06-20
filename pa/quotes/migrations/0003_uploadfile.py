@@ -6,16 +6,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('quotes', '0002_author_added_by_tag_added_by'),
+        ("quotes", "0002_author_added_by_tag_added_by"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='UploadFile',
+            name="UploadFile",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('file', models.FileField(upload_to='uploads/')),
-                ('uploaded_at', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("file", models.FileField(upload_to="uploads/")),
+                ("uploaded_at", models.DateTimeField(auto_now_add=True)),
             ],
         ),
     ]

@@ -1,11 +1,7 @@
-{% extends 'quotes/base.html' %}
+{% extends 'quotes/base.html' %} {% block title %}Profile{% endblock %} {% block
+content %}
 
-{% block title %}Profile{% endblock %}
+<h2>Profile</h2>
+<p>Welcome, {{ user.username }}!</p>
 
-{% block content %}
-
-  <h2>Profile</h2>
-  <p>Welcome, {{ user.username }}!</p>
-    
 {% endblock %}
-

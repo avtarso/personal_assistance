@@ -1,44 +1,25 @@
-{% extends 'quotes/base.html' %}
-
-{% block title %}Login{% endblock %}
-
-{% block content %}
+{% extends 'quotes/base.html' %} {% block title %}Login{% endblock %} {% block
+content %}
 
 <form action="{% url 'users:login' %}" method="post">
   {% csrf_token %}
   <div>
-      <label> Username: {{ form.username }}</label>
+    <label> Username: {{ form.username }}</label>
   </div>
 
   <div>
-      <label>Password: {{ form.password }} </label>
+    <label>Password: {{ form.password }} </label>
   </div>
 
   <div class="grid">
-      <button type="submit">Submit</button>
-      <button type="reset" class="secondary">Reset</button>
+    <button type="submit">Submit</button>
+    <button type="reset" class="secondary">Reset</button>
   </div>
   <div class="small text-center">
-      <a href="{% url 'users:password_reset' %}" class="text-center"><i>Forgot Password?</i></a>
+    <a href="{% url 'users:password_reset' %}" class="text-center"
+      ><i>Forgot Password?</i></a
+    >
   </div>
 </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 {% endblock %}
