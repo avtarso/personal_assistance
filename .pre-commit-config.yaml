@@ -2,53 +2,53 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
     hooks:
-      - id: trailing-whitespace  # Удаление лишних пробелов
-      - id: end-of-file-fixer  # Убедиться, что в конце файлов есть пустая строка
-      - id: check-added-large-files  # Проверка на добавление слишком больших файлов
-      - id: check-merge-conflict  # Проверка на конфликты слияния
+      - id: trailing-whitespace # Удаление лишних пробелов
+      - id: end-of-file-fixer # Убедиться, что в конце файлов есть пустая строка
+      - id: check-added-large-files # Проверка на добавление слишком больших файлов
+      - id: check-merge-conflict # Проверка на конфликты слияния
 
   - repo: https://github.com/psf/black
     rev: 24.4.2
     hooks:
-      - id: black  # Форматирование кода с помощью black
+      - id: black # Форматирование кода с помощью black
 
   - repo: https://github.com/PyCQA/flake8
     rev: 7.1.0
     hooks:
-      - id: flake8  # Линтинг кода
+      - id: flake8 # Линтинг кода
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.10.0
     hooks:
-      - id: mypy  # Статическая типизация с помощью mypy
+      - id: mypy # Статическая типизация с помощью mypy
 
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v4.0.0-alpha.8
     hooks:
-      - id: prettier  # Форматирование HTML, CSS, и JavaScript
+      - id: prettier # Форматирование HTML, CSS, и JavaScript
 
   - repo: https://github.com/pre-commit/mirrors-isort
     rev: v5.10.1
     hooks:
-      - id: isort  # Сортировка импортов
+      - id: isort # Сортировка импортов
 
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
     hooks:
-      - id: python-check-blanket-noqa  # Проверка на blanket noqa
-      - id: python-check-mock-methods  # Проверка правильности вызовов mock методов
+      - id: python-check-blanket-noqa # Проверка на blanket noqa
+      - id: python-check-mock-methods # Проверка правильности вызовов mock методов
 
   - repo: https://github.com/PyCQA/bandit
     rev: 1.7.9
     hooks:
-      - id: bandit  # Статический анализ на безопасность
+      - id: bandit # Статический анализ на безопасность
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.10.0
     hooks:
-      - id: mypy  # Проверка типизации
+      - id: mypy # Проверка типизации
 
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v4.0.0-alpha.8
     hooks:
-      - id: prettier  # Форматирование JSON, Markdown, YAML
+      - id: prettier # Форматирование JSON, Markdown, YAML
