@@ -7,3 +7,7 @@ migrations/
 pa/db.sqlite3
 __pycache__
 __pycache__/
+.mypy_cache
+.mypy_cache/
+node_modules
+node_modules/

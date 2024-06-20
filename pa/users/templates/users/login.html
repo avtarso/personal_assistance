@@ -1,5 +1,5 @@
-{% extends 'quotes/base.html' %} {% block title %}Login{% endblock %} {% block
-content %}
+{% extends 'quotes/base.html' %} {% block title %}Login{% endblock %}
+{% block content %}
 
 <form action="{% url 'users:login' %}" method="post">
   {% csrf_token %}

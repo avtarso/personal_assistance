@@ -1,5 +1,5 @@
-{% extends 'quotes/base.html' %} {% block title %}Authot list{% endblock %} {%
-block content %}
+{% extends 'quotes/base.html' %} {% block title %}Authot list{% endblock %}
+{% block content %}
 <h1>List of Authors</h1>
 <ul>
   {% for author in authors %}
@@ -14,5 +14,5 @@ block content %}
   {% endfor %}
 </ul>
 {% if user.is_authenticated %}
-<a href="{% url 'quotes:add_author' %}">Add a new Author</a>{% endif %} {%
-endblock %}
+<a href="{% url 'quotes:add_author' %}">Add a new Author</a>{% endif %}
+{% endblock %}
