@@ -1,0 +1,17 @@
+{% extends 'quotes/base.html' %}
+
+{% block content%}
+
+<head>
+    <title>Delete Note</title>
+</head>
+<body>
+    <h1>Are you sure you want to delete the note "{{ note.name }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+        <a href="{% url 'notes:all_notes' %}">Cancel</a>
+    </form>
+</body>
+
+{% endblock %}

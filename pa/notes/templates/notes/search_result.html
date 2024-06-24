@@ -2,13 +2,7 @@
 
 {% block content%}
 
-<h1>List of notes</h1>
-<nav>
-    <ul class="menu">
-        <li><a href="{% url 'notes:add_note' %}">New note</a></li>
-        <li><a href="{% url 'notes:find_notes' %}">Find notes</a></li>
-    </ul>
-</nav>
+<h1>Search result:</h1>
 
 <ul>
     {% for note in notes %}

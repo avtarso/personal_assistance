@@ -1,0 +1,24 @@
+{% extends 'quotes/base.html' %}
+
+{% block content%}
+
+<h1>Find notes:</h1>
+<nav>
+    <ul class="by_name">
+        <form action="{% url 'notes:by_name' %}" method="post">
+            <label for="id_name">Search by note`s title:</label>
+            <input type="text" id="id_name" name="name">
+            <input type="submit" value="Search" class="btn btn-primary">
+        </form>
+    </ul>
+    <ul class="by_tag">
+        <form action="{% url 'notes:by_tag' %}" method="post">
+            <label for="id_tag">Search by tag:</label>
+            <input type="text" id="id_tag" name="tag">
+            <input type="submit" value="Search" class="btn btn-primary">
+        </form>
+    </ul>
+</nav>
+
+
+{% endblock %}
