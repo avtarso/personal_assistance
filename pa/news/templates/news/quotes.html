@@ -1,0 +1,15 @@
+<div class="news p-3 border border-1 rounded-3 shadow"
+     itemscope
+     itemtype="http://schema.org/CreativeWork">
+    <div class="quotes-news-text-block">
+        <span class="quotes-news-text" itemprop="text">{{ news.quote }}</span>
+    </div>
+    <div class="quotes-news-author-block">
+        <small>by</small>
+        <span class="quotes-news-author" itemprop="author">{{ news.author }}</span>
+    </div>
+    <div class="quotes-news-tags-block mt-3">
+        <meta class="keywords" itemprop="keywords" content="{{ news.tags }}" />
+        {{ news.tags }}
+    </div>
+</div>

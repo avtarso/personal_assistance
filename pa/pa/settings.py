@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "quotes",
     "notes",
     "users",
+    "news",
     "contacts",
 ]
 

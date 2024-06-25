@@ -1,0 +1,16 @@
+<form class="input-group input-group-sm float-end"
+      style="width: 220px"
+      method="post"
+      action="">
+    {% csrf_token %}
+    <input type="hidden" name="per_page" value="{{ per_page }}">
+    <span class="input-group-text rounded-start">Item per page:</span>
+    <select class="form-select" name="item_per_page" required>
+        <option value="1" {% if per_page == "1" %}selected{% endif %}>1</option>
+        <option value="3" {% if per_page == "3" %}selected{% endif %}>3</option>
+        <option value="5" {% if per_page == "5" %}selected{% endif %}>5</option>
+        <option value="10" {% if per_page == "10" %}selected{% endif %}>10</option>
+        <option value="all" {% if per_page == "all" %}selected{% endif %}>All</option>
+    </select>
+    <button type="submit" class="btn btn-light border border-1">Go</button>
+</form>
