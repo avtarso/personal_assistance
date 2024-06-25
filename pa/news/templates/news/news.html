@@ -1,0 +1,60 @@
+{% extends "news/content_right.html" %}
+{% block h2 %}
+    {{ h2 }}
+{% endblock h2 %}
+{% block main_content %}
+    {% with url="news:"|add:news_type|add:"_get" %}
+        <a class="btn btn-link btn-sm" href="{% url url %}"><span>Оновити</span></a>
+    {% endwith %}
+    {% if page_obj %}
+        {% if not show_all_pages or show_items_per_page %}
+            <div class="row mb-2">
+                <div class="col"></div>
+                <div class="col-lg-10">{% include "news/items_per_page.html" %}</div>
+                <div class="col"></div>
+            </div>
+        {% endif %}
+        {% for news in page_obj %}
+            <div class="row mb-4">
+                <div class="col"></div>
+                <div class="col-lg-10">
+                    {% with url="news/"|add:news_type|add:".html" %}
+                        {% include url %}
+                    {% endwith %}
+                </div>
+                <div class="col"></div>
+            </div>
+        {% endfor %}
+        {% if not show_all_pages %}
+            {% include "news/pagination.html" %}
+        {% endif %}
+    {% endif %}
+{% endblock main_content %}
+{% block right_content %}
+    <div class="row mb-4">
+        <div class="col"></div>
+        <div class="col-lg-10">
+            <a class="btn btn-link btn-sm" href="{% url 'news:economics' %}"><span>Новини - Економіка</span></a>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row mb-4">
+        <div class="col"></div>
+        <div class="col-lg-10">
+            <a class="btn btn-link btn-sm" href="{% url 'news:politics' %}"><span>Новини - Політика</span></a>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row mb-4">
+        <div class="col"></div>
+        <div class="col-lg-10">Прогноз погоди</div>
+        <div class="col"></div>
+    </div>
+    <div class="row mb-4">
+        <div class="col"></div>
+        <div class="col-lg-10">
+            <a class="btn btn-link btn-sm" href="{% url 'news:main' %}"><span>Цитати відомих людей</span></a>
+        </div>
+        <div class="col"></div>
+    </div>
+{% endblock right_content %}

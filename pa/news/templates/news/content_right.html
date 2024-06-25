@@ -1,0 +1,23 @@
+{% extends "quotes/base.html" %}
+{% block content %}
+    <div class="row mb-5 mt-3">
+        <div class="col">
+            <h1>
+                {% block h2 %}
+                {% endblock h2 %}
+            </h1>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-md-8 col-lg-9">
+            <div class="container">
+                {% block main_content %}
+                {% endblock main_content %}
+            </div>
+        </div>
+        <div class="col-md-4 col-lg-3 float-end">
+            {% block right_content %}
+            {% endblock right_content %}
+        </div>
+    </div>
+{% endblock content %}

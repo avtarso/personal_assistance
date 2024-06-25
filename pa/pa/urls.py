@@ -25,4 +25,5 @@ urlpatterns = [
     path("", quotes_views.top_10_tag_list, name="main"),
     path("users/", include("users.urls")),
     path("quotes/", include("quotes.urls")),
+    path("news/", include("news.urls")),
 ]
