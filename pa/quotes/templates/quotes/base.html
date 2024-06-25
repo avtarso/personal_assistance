@@ -17,54 +17,21 @@
     </head>
     <body>
         <header>
-            <h1>Best Quotes Site</h1>
+            <h1>Personal Assistance Site</h1>
             <nav>
                 <ul class="menu">
-                    <li>
-                        <a href="{% url 'main' %}">Home</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'quotes:author_list' %}">Authors</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                        <li>
-                            <a href="{% url 'news:main' %}">News</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'quotes:add_author' %}">Add Author</a>
-                        </li>
-                    {% endif %}
-                    <li>
-                        <a href="{% url 'quotes:tag_list' %}">Tags</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                        <li>
-                            <a href="{% url 'quotes:add_tag' %}">Add Tag</a>
-                        </li>
-                    {% endif %}
-                    <li>
-                        <a href="{% url 'quotes:quote_list' %}">Quotes</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                        <li>
-                            <a href="{% url 'quotes:add_quote' %}">Add Quote</a>
-                        </li>
-                    {% endif %}
+                    <li><a href="{% url 'main' %}">Home</a></li>
                     {% if not user.is_authenticated %}
-                        <li>
-                            <a href="{% url 'users:login' %}">Login</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'users:register' %}">Register</a>
-                        </li>
+                        <li><a href="{% url 'users:login' %}">Login</a></li>
+                        <li><a href="{% url 'users:register' %}">Register</a></li>
                     {% endif %}
+
                     {% if user.is_authenticated %}
-                        <li>
-                            <a href="{% url 'users:profile' %}">Profile</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'users:logout' %}">Logout</a>
-                        </li>
+                        <li><a href="{% url 'news:main' %}">News</a></li>
+                        <li><a href="{% url 'contacts:contacts' %}">Contacts</a></li>
+                        <li><a href="{% url 'notes:all_notes' %}">Notes</a></li>
+                        <li><a href="{% url 'users:profile' %}">Profile</a></li>
+                        <li><a href="{% url 'users:logout' %}">Logout</a></li>
                     {% endif %}
                 </ul>
             </nav>
@@ -74,7 +41,7 @@
             {% endblock content %}
         </main>
         <footer>
-            <p>&copy; 2024 Best Quotes Site</p>
+            <p>&copy; 2024 Personal Assistance Site</p>
         </footer>
     </body>
 </html>
