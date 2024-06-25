@@ -1,10 +1,11 @@
 .venv
 drafts
 drafts/
-paenv
-paenv/
-migrations
-migrations/
+paenv/*
+migrations/*
+!migrations/__init__.py
+**/migrations/*
+!**/migrations/__init__.py
 pa/db.sqlite3
 __pycache__
 __pycache__/
@@ -12,3 +13,6 @@ __pycache__/
 .mypy_cache/
 node_modules
 node_modules/
+.idea
+.idea/
+.env
