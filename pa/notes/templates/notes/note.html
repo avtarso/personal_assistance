@@ -1,0 +1,17 @@
+{% extends "quotes/base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+<div>
+    <h1>{{ note.name }}</h1>
+    <h2>{{ note.description }}</h2>
+    {% for tag in note.tags.all %}
+    <small>{{ tag.name }}</small>
+    {% endfor %}
+
+    <a href="edit">Edit note</a>
+</div>
+
+{% endblock %}

@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import AuthorForm, QuoteForm, TagForm, UploadFileForm
-from .models import Author, Quote, Tag, UploadFile
+from .forms import AuthorForm, UploadFileForm
+from .models import Author, Quote, UploadFile
 
 
 def main_page(request):

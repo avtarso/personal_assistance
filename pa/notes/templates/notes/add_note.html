@@ -1,0 +1,38 @@
+{% extends "quotes/base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+<div>
+    <h2>Add new note</h2>
+</div>
+
+<form action="{% url 'notes:add_note' %}" method="post">
+    <div>
+        <div>
+            <label for="id_name">Title:</label>
+            <input type="text" class="form-control" id="id_name" name="name">
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <label for="id_description">Description:</label>
+            <input type="text" class="form-control" id="id_description" name="description">
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <label for="id_tags">Tags:</label>
+            <input type="text" class="form-control" id="id_tags" name="tags">
+        </div>
+    </div>
+
+    <input type="submit" value="Add" class="btn btn-primary">
+
+</form>
+
+
+{% endblock %}

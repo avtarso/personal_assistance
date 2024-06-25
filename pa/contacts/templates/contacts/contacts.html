@@ -1,0 +1,14 @@
+{% extends 'quotes/base.html' %}
+
+{% block content%}
+
+<h1>Contacts:</h1>
+<ul>
+    {% for contact in contacts %}
+    <li>
+        <strong>{{ contact.name }}</strong>
+        {% endfor %}
+    </li>
+</ul>
+
+{% endblock %}
