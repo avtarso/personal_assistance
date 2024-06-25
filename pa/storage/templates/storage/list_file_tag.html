@@ -1,0 +1,32 @@
+{% extends 'quotes/base.html' %} {% block title %}File{% endblock %}
+{% block content %}
+
+{% if tag %}
+<h1>List of files with tag "{{ tag.name }}"</h1>
+{% endif %}
+{% if not tag %}
+<h1>List of files without tag</h1>
+{% endif %}
+
+{% include 'storage/menu_main.html' %}
+<ul>
+
+  {% if tag %}
+  <li>
+    You can do with tag "{{ tag.name }}" - 
+  {% include 'storage/menu_tag.html' %}<br /><br />    
+  </li>
+  {% endif %}
+
+  {% for file in files %}
+  <li>
+    {% include 'storage/info_file.html' %}<br />
+    {% include 'storage/menu_file.html' %}<br /><br />
+  </li>
+  {% empty %}
+  <li>No files with tag "{{ tag.name }}"</li>
+  {% endfor %}
+  
+</ul>
+{% include 'storage/pagination.html' %}
+{% endblock %}

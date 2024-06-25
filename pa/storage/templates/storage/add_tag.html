@@ -1,0 +1,13 @@
+{% extends 'quotes/base.html' %}
+
+{% block title %}Add Tag for file{% endblock %}
+
+{% block content %}
+
+<h1>Add a new Tag</h1>
+{% include 'storage/menu_main.html' %}
+<form method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Save Tag fo file</button>
+</form>
+{% endblock %}

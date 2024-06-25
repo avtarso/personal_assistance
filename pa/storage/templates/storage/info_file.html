@@ -1,0 +1,16 @@
+{{ file.id }}. {{ file.file_name }} - {{ file.file_size }} byte<br />
+<i><strong>Description:</strong></i> {{ file.description }}<br /> 
+<i><strong>Review date:</strong></i> {{ file.attention_date}}<br />
+<i><strong>Tags:</strong></i>
+
+{% if file.tags %}
+{% for tag in file.tags.all %}
+<a href="{% url 'storage:tag' tag.id %}">{{ tag.name }}</a> {% if not forloop.last %}, {% endif %}
+{% endfor %}
+{% endif %}
+
+{% if not file.tags.all %}
+<a href="{% url 'storage:tag_none' %}">without tag</a>
+{% endif %}
+
+

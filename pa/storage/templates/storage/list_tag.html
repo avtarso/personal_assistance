@@ -1,0 +1,32 @@
+{% extends 'quotes/base.html' %}
+
+{% block title %}List of file tags{% endblock %}
+
+{% block content %}
+
+<h1>List of file tags</h1>
+{% include 'storage/menu_main.html' %}
+<ul>
+  {% if without_tags %}
+  <li>
+    <strong>
+    <a href="{% url 'storage:tag_none' %}">Without tags uploaded files: {{ without_tags }}</a>
+    </strong> 
+  </li>
+  <br />
+  {% endif %}
+
+  {% for tag in tags %}
+  <li>
+    <strong>
+      {% if tag.num_files %}<a href="{% url 'storage:tag' tag.id %}">{% endif %}
+      {{ tag.name }}
+      {% if tag.num_files %}</a>{% endif %}</strong> 
+      - used in {{ tag.num_files }} files <br />
+      {% include 'storage/menu_tag.html' %}<br /><br />
+  </li>
+  {% empty %}
+  <li>No tag available</li>
+  {% endfor %}
+</ul>
+{% endblock %}

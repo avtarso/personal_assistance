@@ -18,11 +18,12 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "________________________________________"
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     "users",
     "news",
     "contacts",
+    "storage",
 ]
 
 MIDDLEWARE = [
@@ -168,3 +170,7 @@ EMAIL_USE_TLS = False
 EMAIL_HOST_USER = os.getenv("EMAIL_PERSONAL_ASSISTANT")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PERSONAL_ASSISTANT_PASSWORD")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+MAX_FILE_SIZE = 10 * 1024 * 1024
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+TELEGRAM_CHAT = os.getenv("TELEGRAM_CHAT")
