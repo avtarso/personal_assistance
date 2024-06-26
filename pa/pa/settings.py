@@ -97,8 +97,8 @@ DATABASES = {
         'NAME': os.getenv("POSTGRES_DB"),
         'USER': os.getenv("POSTGRES_USER"),
         'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-        'HOST': os.getenv("RAILWAY_PRIVATE_DOMAIN"),
-        'PORT': os.getenv("PGPORT"),
+        'HOST': os.getenv("RAILWAY_TCP_PROXY_DOMAIN"),
+        'PORT': os.getenv("RAILWAY_TCP_PROXY_PORT"),
     }
 }
 
