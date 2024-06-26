@@ -33,6 +33,10 @@ ALLOWED_HOSTS = ["personalassistance-production.up.railway.app", "localhost", "1
 
 # Application definition
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://personalassistance-production.up.railway.app',
+]
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
