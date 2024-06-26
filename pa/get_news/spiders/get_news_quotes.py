@@ -5,19 +5,17 @@ from get_news.items import QuoteItem
 
 class GetNewsQuotesSpider(scrapy.Spider):
     name = "get_news_quotes"
-
     allowed_domains = ["quotes.toscrape.com"]
     start_urls = ["https://quotes.toscrape.com"]
 
     def parse(self, response):
 
-        for quote in response.xpath("/html//div[@class='quote']"):
-
+        for news in response.xpath("/html//div[@class='quote']"):
             item = QuoteItem()
 
-            item["tags"] = quote.xpath("div[@class='tags']/a/text()").extract()
-            item["author"] = quote.xpath("span/small/text()").get()
-            item["quote"] = quote.xpath("span[@class='text']/text()").get()
+            item["tags"] = news.xpath("div[@class='tags']/a/text()").extract()
+            item["author"] = news.xpath("span/small/text()").get()
+            item["quote"] = news.xpath("span[@class='text']/text()").get()
 
             yield item
 

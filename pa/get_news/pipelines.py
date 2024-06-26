@@ -5,12 +5,9 @@
 
 
 # useful for handling different item types with a single interface
-from datetime import datetime
 from itemadapter import ItemAdapter
-from scrapy.exceptions import DropItem
 
-from news.models import NewsQuote, NewsEconomics, NewsPolitics
-from django.core.exceptions import ObjectDoesNotExist
+from news.models import NewsQuote, NewsEconomics, NewsPolitics, NewsWeather
 
 
 class StripPipeline:
@@ -37,17 +34,34 @@ class DatabasePipeline:
 
         if spider.name == "get_news_economics":
             data = NewsEconomics.objects.create(
-                time=adapter["time"], text=adapter["text"], url=adapter["url"]
+                time=adapter["time"],
+                text=adapter["text"],
+                url=adapter["url"],
+                added_by_id=spider.request_user_id,
             )
         elif spider.name == "get_news_politics":
             data = NewsPolitics.objects.create(
-                time=adapter["time"], text=adapter["text"], url=adapter["url"]
+                time=adapter["time"],
+                text=adapter["text"],
+                url=adapter["url"],
+                added_by_id=spider.request_user_id,
+            )
+        elif spider.name == "get_news_weather":
+            data = NewsWeather.objects.create(
+                day=adapter["day"],
+                month=adapter["month"],
+                degree=adapter["degree"],
+                added_by_id=spider.request_user_id,
             )
         else:
             tags = ", ".join(adapter["tags"])
             data = NewsQuote.objects.create(
-                quote=adapter["quote"], author=adapter["author"], tags=tags
+                quote=adapter["quote"],
+                author=adapter["author"],
+                tags=tags,
+                added_by_id=spider.request_user_id,
             )
+
         data.save()
 
         return item
