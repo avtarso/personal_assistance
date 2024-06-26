@@ -107,9 +107,6 @@ DATABASES = {
         default=os.getenv('DATABASE_URL')
     )
 }
-print("==============================================================")
-print(os.getenv('DATABASE_PRIVATE_URL'))
-print("==============================================================")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
