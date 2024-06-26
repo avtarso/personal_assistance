@@ -22,3 +22,9 @@ class PoliticsItem(scrapy.Item):
     time = scrapy.Field()
     text = scrapy.Field()
     url = scrapy.Field()
+
+
+class WeatherItem(scrapy.Item):
+    day = scrapy.Field()
+    month = scrapy.Field()
+    degree = scrapy.Field()

@@ -1,11 +1,32 @@
 {% extends "news/content_right.html" %}
+{% block top %}
+    <div class="row mb-4">
+        <div class="col">
+            <div class="d-inline-flex d-sm-flex flex-wrap text-center justify-content-between">
+                <div class="flex-fill border border-1 me-1 mb-1 rounded-1">
+                    <a class="btn btn-link btn-sm" href="{% url 'news:economics' %}"><span>Новини - Економіка</span></a>
+                    <a class="btn btn-link btn-sm" href="{% url 'news:economics_get' %}"><span>(Оновити)</span></a>
+                </div>
+                <div class="flex-fill border border-1 me-1 mb-1 rounded-1">
+                    <a class="btn btn-link btn-sm" href="{% url 'news:politics' %}"><span>Новини - Політика</span></a>
+                    <a class="btn btn-link btn-sm" href="{% url 'news:politics_get' %}"><span>(Оновити)</span></a>
+                </div>
+                <div class="flex-fill border border-1 me-1 mb-1 rounded-1">
+                    <a class="btn btn-link btn-sm" href="{% url 'news:weather' %}"><span>Прогноз погоди</span></a>
+                    <a class="btn btn-link btn-sm" href="{% url 'news:weather_get' %}"><span>(Оновити)</span></a>
+                </div>
+                <div class="flex-fill border border-1 me-1 mb-1 rounded-1">
+                    <a class="btn btn-link btn-sm" href="{% url 'news:main' %}"><span>Цитати відомих людей</span></a>
+                    <a class="btn btn-link btn-sm" href="{% url 'news:quotes_get' %}"><span>(Оновити)</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock top %}
 {% block h2 %}
     {{ h2 }}
 {% endblock h2 %}
 {% block main_content %}
-    {% with url="news:"|add:news_type|add:"_get" %}
-        <a class="btn btn-link btn-sm" href="{% url url %}"><span>Оновити</span></a>
-    {% endwith %}
     {% if page_obj %}
         {% if not show_all_pages or show_items_per_page %}
             <div class="row mb-2">
@@ -14,47 +35,33 @@
                 <div class="col"></div>
             </div>
         {% endif %}
-        {% for news in page_obj %}
+        {% if news_type == "weather" %}
             <div class="row mb-4">
-                <div class="col"></div>
-                <div class="col-lg-10">
-                    {% with url="news/"|add:news_type|add:".html" %}
-                        {% include url %}
-                    {% endwith %}
+                <div class="col">
+                    <div class="d-inline-flex flex-wrap justify-content-center my-4">
+                        {% for news in page_obj %}
+                            {% with url="news/"|add:news_type|add:".html" %}
+                                {% include url %}
+                            {% endwith %}
+                        {% endfor %}
+                    </div>
                 </div>
-                <div class="col"></div>
             </div>
-        {% endfor %}
+        {% else %}
+            {% for news in page_obj %}
+                <div class="row mb-4">
+                    <div class="col"></div>
+                    <div class="col-lg-10">
+                        {% with url="news/"|add:news_type|add:".html" %}
+                            {% include url %}
+                        {% endwith %}
+                    </div>
+                    <div class="col"></div>
+                </div>
+            {% endfor %}
+        {% endif %}
         {% if not show_all_pages %}
             {% include "news/pagination.html" %}
         {% endif %}
     {% endif %}
 {% endblock main_content %}
-{% block right_content %}
-    <div class="row mb-4">
-        <div class="col"></div>
-        <div class="col-lg-10">
-            <a class="btn btn-link btn-sm" href="{% url 'news:economics' %}"><span>Новини - Економіка</span></a>
-        </div>
-        <div class="col"></div>
-    </div>
-    <div class="row mb-4">
-        <div class="col"></div>
-        <div class="col-lg-10">
-            <a class="btn btn-link btn-sm" href="{% url 'news:politics' %}"><span>Новини - Політика</span></a>
-        </div>
-        <div class="col"></div>
-    </div>
-    <div class="row mb-4">
-        <div class="col"></div>
-        <div class="col-lg-10">Прогноз погоди</div>
-        <div class="col"></div>
-    </div>
-    <div class="row mb-4">
-        <div class="col"></div>
-        <div class="col-lg-10">
-            <a class="btn btn-link btn-sm" href="{% url 'news:main' %}"><span>Цитати відомих людей</span></a>
-        </div>
-        <div class="col"></div>
-    </div>
-{% endblock right_content %}

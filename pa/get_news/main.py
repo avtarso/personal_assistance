@@ -4,15 +4,15 @@ from twisted.internet import reactor
 
 from scrapy.utils.project import get_project_settings
 
-from .spiders.get_news_quotes import GetNewsQuotesSpider
-from .spiders.get_news_economics import GetNewsEconomicsSpider
-from .spiders.get_news_politics import GetNewsPoliticsSpider
 
+def func(q, spider, uid):
 
-def func(q, spider):
+    class CustomSpider(spider):
+        request_user_id = uid
+
     try:
         runner = crawler.CrawlerRunner(get_project_settings())
-        deferred = runner.crawl(spider)
+        deferred = runner.crawl(CustomSpider)
         deferred.addBoth(lambda _: reactor.stop())
         reactor.run()
         q.put(None)
@@ -20,25 +20,13 @@ def func(q, spider):
         q.put(e)
 
 
-def common(spider):
+# The wrapper to make spider run more times
+def run_get_news_spider(spider, uid):
     q = Queue()
-    p = Process(target=func, args=(q, spider))
+    p = Process(target=func, args=(q, spider, uid))
     p.start()
     result = q.get()
     p.join()
 
     if result is not None:
         raise result
-
-
-# The wrapper to make spider run more times
-def run_get_news_quotes_spider(spider=GetNewsQuotesSpider):
-    common(spider=GetNewsQuotesSpider)
-
-
-def run_get_news_economics_spider(spider=GetNewsEconomicsSpider):
-    common(spider=GetNewsEconomicsSpider)
-
-
-def run_get_news_politics_spider(spider=GetNewsPoliticsSpider):
-    common(spider=GetNewsPoliticsSpider)
