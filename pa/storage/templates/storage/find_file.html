@@ -1,0 +1,28 @@
+{% extends 'quotes/base.html' %}
+
+{% block title %}Find in files{% endblock %}
+
+{% block content %}
+
+<h1>Find in files</h1>
+{% include 'storage/menu_main.html' %}
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Find in files</button>
+</form>
+<br />
+<ul>
+    {% if find_text %}
+    {% for file in files %}
+    <li>
+      {% include 'storage/info_file.html' %}<br />
+      {% include 'storage/menu_file.html' %}<br /><br />
+    </li>
+    {% empty %}
+    <li>No files with text "{{ find_text }} in file name or description""</li>
+    {% endfor %}
+    {% endif %}
+  </ul>
+{% include 'storage/pagination.html' %}
+{% endblock %}

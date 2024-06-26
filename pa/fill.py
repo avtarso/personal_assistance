@@ -140,8 +140,14 @@ def create_user(username, password):
     else:
         print(f"User '{username}' already exists.")
 
+file_path = 'first_start.py'
 
 if __name__ == "__main__":
-    create_user(username, password)
-    import_data(username)
+
+    if not os.path.exists(file_path):
+        # Create empty file. Only for testing and demonstrate
+        with open(file_path, 'w') as file:
+            pass
+        create_user(username, password)
+        import_data(username)
 

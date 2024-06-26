@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
-import dj_database_url
+# import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,6 +32,10 @@ DEBUG = True
 ALLOWED_HOSTS = ["personalassistance-production.up.railway.app", "localhost", "127.0.0.1"]
 
 # Application definition
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://personalassistance-production.up.railway.app',
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -52,7 +56,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -84,30 +88,29 @@ WSGI_APPLICATION = "pa.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'notes',
-#         'USER': 'postgres',
-#         'PASSWORD': '242419',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv("PA_DATA_BASE"),
+        'USER': os.getenv("PA_DB_USER"),
+        'PASSWORD': os.getenv("PA_DB_PASSWORD"),
+        'HOST': os.getenv("PA_HOST"),
+        'PORT': os.getenv("PA_DB_PORT"),
+    }
+}
 
 # DATABASES = {
 #     'default': dj_database_url.config(
 #         default=os.getenv('DATABASE_URL')
 #     )
 # }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

@@ -7,6 +7,7 @@ migrations/*
 **/migrations/*
 !**/migrations/__init__.py
 pa/db.sqlite3
+pa/first_start.py
 __pycache__
 __pycache__/
 .mypy_cache
@@ -16,3 +17,4 @@ node_modules/
 .idea
 .idea/
 .env
+

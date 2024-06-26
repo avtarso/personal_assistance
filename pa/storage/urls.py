@@ -21,6 +21,6 @@ urlpatterns = [
     path('edit_file/<int:file_id>', views.edit_file, name='edit_file'),
     path('file/<int:file_id>', views.detail_file, name='detail_file'),
 
-    # path('upcoming_file_review/', views.edit_file_description, name='edit_file_description'),
-    # path('find/', views.find_file, name='find_file'),
+    path('upcoming_file_review/', views.file_list_upcoming_date, name='file_list_upcoming_date'),
+    path('find/', views.find_file, name='find_file'),
 ]
