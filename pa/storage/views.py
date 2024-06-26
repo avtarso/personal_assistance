@@ -1,9 +1,10 @@
 # storage/views.py
 import requests
 import logging
+import datetime
 
 from django.conf import settings
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, get_list_or_404
@@ -12,7 +13,7 @@ from django.views.generic import ListView
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from .forms import FileUploadForm, FileTagForm, UploadedFileEditForm
+from .forms import FileUploadForm, FileTagForm, UploadedFileEditForm, FileFindForm
 from .models import UploadedFile, FileTag
 
 
@@ -70,7 +71,7 @@ def upload_file(request):
 @login_required
 def file_list(request):
     files = UploadedFile.objects.filter(user_id=request.user.id).order_by('-upload_time')
-    return render(request, "storage/list_file.html", {"files": paginate_data(request, files)})
+    return render(request, "storage/list_file.html", {"files": paginate_data(request, files), "today": datetime.date.today()})
 
 
 @login_required
@@ -161,13 +162,13 @@ def delete_tag_confirmed(request, tag_id):
 def tag(request, tag_id):
     tag = get_object_or_404(FileTag, added_by=request.user.id, id=tag_id)
     files = get_list_or_404(UploadedFile, user=request.user.id, tags__id=tag_id)
-    return render(request, 'storage/list_file_tag.html', {'tag': tag, 'files': paginate_data(request, files)})
+    return render(request, 'storage/list_file_tag.html', {'tag': tag, 'files': paginate_data(request, files), "today": datetime.date.today()})
 
 
 @login_required
 def tag_none(request):
     files = get_list_or_404(UploadedFile, user=request.user.id, tags__isnull=True)
-    return render(request, 'storage/list_file_tag.html', {'files': paginate_data(request, files)})
+    return render(request, 'storage/list_file_tag.html', {'files': paginate_data(request, files), "today": datetime.date.today()})
 
 
 @login_required
@@ -198,4 +199,26 @@ def edit_file(request, file_id):
 @login_required
 def detail_file(request, file_id):
     detailed_file = get_object_or_404(UploadedFile, id=file_id, user=request.user)
-    return render(request, 'storage/detail_file.html', {'file': detailed_file})
+    return render(request, 'storage/detail_file.html', {'file': detailed_file, "today": datetime.date.today()})
+
+
+@login_required
+def find_file(request):
+    find_text = ""
+    form = FileFindForm(request.POST or None)
+    files = UploadedFile.objects.none()
+    if request.method == 'POST' and form.is_valid():
+        find_text = form.cleaned_data['find_text'].strip()
+        if find_text:
+            files = UploadedFile.objects.filter(
+        Q(description__icontains=find_text) | Q(file_name__icontains=find_text)).order_by('-upload_time')
+    return render(request, "storage/find_file.html", {"form": form, "files": paginate_data(request, files), "find_text": find_text, "today": datetime.date.today()})
+
+
+@login_required
+def file_list_upcoming_date(request):
+    files = UploadedFile.objects.filter(user_id=request.user.id
+            ).exclude(attention_date__isnull=True).order_by('attention_date')
+    return render(request, "storage/list_file_upcoming_date.html", {"files": paginate_data(request, files), "today": datetime.date.today()})
+
+

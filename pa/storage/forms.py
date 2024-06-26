@@ -50,3 +50,7 @@ class UploadedFileEditForm(forms.ModelForm):
     class Meta:
         model = UploadedFile
         fields = ['attention_date', 'tags', 'description']
+
+
+class FileFindForm(forms.Form):
+    find_text = forms.CharField(label='Search', max_length=255, required=False)

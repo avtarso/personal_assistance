@@ -1,0 +1,16 @@
+{% extends 'quotes/base.html' %} {% block title %}List of files with upcoming date review{% endblock %}
+{% block content %}
+<h1>List of files with upcoming date review</h1>
+{% include 'storage/menu_main.html' %}
+<ul>
+  {% for file in files %}
+  <li>
+    {% include 'storage/info_file.html' %}<br />
+    {% include 'storage/menu_file.html' %}<br /><br />
+  </li>
+  {% empty %}
+  <li>No files with upcoming date review available.</li>
+  {% endfor %}
+</ul>
+{% include 'storage/pagination.html' %}
+{% endblock %}

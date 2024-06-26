@@ -1,6 +1,12 @@
 {{ file.id }}. {{ file.file_name }} - {{ file.file_size }} byte<br />
 <i><strong>Description:</strong></i> {{ file.description }}<br /> 
-<i><strong>Review date:</strong></i> {{ file.attention_date}}<br />
+<i><strong>Review date:</strong></i> 
+{% if file.attention_date < today %}
+    <span class="attention_date">{{ file.attention_date }}</span>
+{% else %}
+    {{ file.attention_date }}
+{% endif %}
+<br />
 <i><strong>Tags:</strong></i>
 
 {% if file.tags %}
