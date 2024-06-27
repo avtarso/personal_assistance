@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "news",
     "contacts",
     "storage",
+    "notifications",
 ]
 
 MIDDLEWARE = [
