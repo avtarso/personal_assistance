@@ -1,0 +1,17 @@
+{% extends 'quotes/base.html' %}
+
+{% block content%}
+
+<h1>Search result:</h1>
+
+<ul>
+    {% for contact in contacts %}
+    <li>
+        <a href="/contact/{{contact.id}}/">{{contact.name}}</a><br/><br/>
+        <a href="/contact/{{contact.id}}/delete">Delete</a>
+        {% endfor %}
+    </li>
+</ul>
+
+
+{% endblock %}

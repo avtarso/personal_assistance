@@ -1,0 +1,17 @@
+{% extends 'quotes/base.html' %}
+
+{% block content%}
+
+<head>
+    <title>Delete contact</title>
+</head>
+<body>
+    <h1>Are you sure you want to delete the contact {{ contact.name }}?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+        <a href="{% url 'contacts:contacts' %}">Cancel</a>
+    </form>
+</body>
+
+{% endblock %}
