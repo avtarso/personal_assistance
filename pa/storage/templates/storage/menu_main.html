@@ -1,0 +1,11 @@
+{% if user.is_authenticated %}
+<ul class="menu">
+
+    <li><a href="{% url 'storage:file_list' %}">File list</a></li>
+    <li><a href="{% url 'storage:find_file' %}">Find file</a></li>
+    <li><a href="{% url 'storage:upload_file' %}">Add file</a></li>
+    <li><a href="{% url 'storage:tag_list' %}">Tag List</a></li>
+    <li><a href="{% url 'storage:add_tag' %}">Add tag</a></li>
+    <li><a href="{% url 'storage:file_list_upcoming_date' %}">Upcoming date review</a></li>  
+</ul>
+{% endif %} 

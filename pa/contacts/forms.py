@@ -1,7 +1,7 @@
 from django import forms
 
 from .models import Contact
-from .validators import EmailValidator, NameValidator, PhoneValidator
+from .validators import EmailValidator, NameValidator, PhoneValidator, BirthdayValidator
 
 
 class ContactForm(forms.ModelForm):
@@ -24,8 +24,9 @@ class ContactForm(forms.ModelForm):
         required=False,
         validators=[EmailValidator()]
     )
-    birthday = forms.DateField(
-        required=False
+    birthday = forms.CharField(
+        required=False,
+        validators=[BirthdayValidator()]
     )
 
     class Meta:

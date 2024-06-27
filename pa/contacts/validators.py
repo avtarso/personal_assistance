@@ -35,9 +35,22 @@ class PhoneValidator:
     def __call__(self, value):
         if not value.startswith("380") and len(value) != 12:
             raise ValidationError(
-                gettext("Only Ukrainian numbers with country code (380)"),
-                code="invalid_phone"
+                gettext("Only Ukrainian numbers with country code '38XXXXXXXXXX'"),
+                code='invalid_phone'
             )
 
     def get_help_text(self):
         return gettext('Enter a valid phone number')
+
+
+class BirthdayValidator:
+
+    def __call__(self, value):
+        if not re.match(r'^\d{4}-\d{2}-\d{2}$', value):
+            raise ValidationError(
+                gettext("Birthday format is 'YYYY-MM-DD'"),
+                code='invalid_date'
+            )
+
+    def get_help_text(self):
+        return gettext("Enter a valid date.")

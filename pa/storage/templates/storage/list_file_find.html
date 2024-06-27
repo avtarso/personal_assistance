@@ -1,0 +1,19 @@
+{% extends 'quotes/base.html' %} {% block title %}File{% endblock %}
+{% block content %}
+
+<h1>List of files with text "{{ find_text }}"</h1>
+
+{% include 'storage/menu_main.html' %}
+<ul>
+  {% for file in files %}
+  <li>
+    {% include 'storage/info_file.html' %}<br />
+    {% include 'storage/menu_file.html' %}<br /><br />
+  </li>
+  {% empty %}
+  <li>No files with text "{{ find_text }}""</li>
+  {% endfor %}
+  
+</ul>
+{% include 'storage/pagination.html' %}
+{% endblock %}

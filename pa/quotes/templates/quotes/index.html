@@ -4,19 +4,5 @@
 
 {% block content %}
 
-<h1>Top 10 tags</h1>
-<ul>
-  {% for tag in tags_with_counts %}
-  <li>
-    <strong>{{ tag.name }}</strong>
-    <!--<small>Added by: {% if tag.added_by %} {{ tag.added_by.username }}
-        {% else %}Unknown{% endif %}</small>-->
-    -
-    <a href="{% url 'quotes:tag_quotes' tag.id %}"
-      >{{ tag.num_quotes }} quotes</a
-    >
-  </li>
-  {% endfor %}
-</ul>
 
 {% endblock %}

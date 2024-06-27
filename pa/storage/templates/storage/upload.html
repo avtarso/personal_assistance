@@ -1,0 +1,33 @@
+{% extends 'quotes/base.html' %}
+
+{% block title %}Upload file{% endblock %}
+
+{% block content %}
+
+<h2>Upload File</h2>
+{% include 'storage/menu_main.html' %}
+<p>Maximum file size for upload: {{ max_file_size|floatformat:0 }} Mb</p>
+<form id="uploadForm" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Upload file">
+</form>
+<p id="errorMessage" style="color: red;"></p>
+
+<script>
+    document.getElementById('uploadForm').addEventListener('submit', function (event) {
+        var fileInput = document.querySelector('input[type="file"]');
+        var file = fileInput.files[0];
+        var maxSize = {{ max_file_size }};
+
+        if (file.size / 1024 / 1024 > maxSize) {
+            event.preventDefault();
+            document.getElementById('errorMessage').textContent = 'The file size exceeds ' + (maxSize).toFixed(0) + ' Mb. Current size: ' + (file.size / (1024 * 1024)).toFixed(0) + ' Mb.';
+        }
+    });
+</script>
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+{% endblock %}

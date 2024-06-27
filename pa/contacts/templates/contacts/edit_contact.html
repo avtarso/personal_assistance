@@ -42,7 +42,8 @@
     <div class="row" bis_skin_checked="1">
         <div class="form-group col-xs-3" bis_skin_checked="1">
             <label for="id_birthday">Birthday:</label>
-            <input type="text" class="form-control" id="id_birthday" name="birthday" value="{{ form.birthday.value|default:''}}">
+            <input type="text" class="form-control" id="id_birthday" name="birthday" value="{{ form.birthday.value|default:''|date:'Y-m-d'}}">
+            {{ form.birthday.errors }}
         </div>
     </div>
 

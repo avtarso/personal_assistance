@@ -1,8 +1,5 @@
-from datetime import datetime
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
-from django.core.exceptions import ValidationError as validation_error
 
 from .models import Contact
 from .forms import ContactForm
