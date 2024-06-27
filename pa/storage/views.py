@@ -61,8 +61,13 @@ def upload_file(request):
                 form.save_m2m()
                 return redirect('storage:detail_file', file_id=uploaded_file_instance.id)
             else:
-                # ADD ERRORS REVIEW
-                return render(request, 'storage/upload.html', {'form': form, 'error': 'Failed to upload file to Telegram.'})
+                # Extract error details
+                try:
+                    error_details = response.json().get('description', 'No details provided')
+                except ValueError:  # In case response is not JSON
+                    error_details = response.content.decode() if response.content else 'No content provided'
+                error_message = f'Failed to upload file to Telegram. Error: {error_details}'
+                return render(request, 'storage/upload.html', {'form': form, 'error': error_message})
     else:
         form = FileUploadForm()
     return render(request, 'storage/upload.html', {'form': form, 'max_file_size': settings.MAX_FILE_SIZE/1024/1024})
