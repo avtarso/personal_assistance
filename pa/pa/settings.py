@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '________________________________________'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "news",
     "contacts",
     "storage",
+    "notifications",
 ]
 
 MIDDLEWARE = [
@@ -98,11 +99,11 @@ WSGI_APPLICATION = "pa.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        'NAME': os.getenv("PA_DATA_BASE"),
+        'USER': os.getenv("PA_DB_USER"),
+        'PASSWORD': os.getenv("PA_DB_PASSWORD"),
+        'HOST': os.getenv("PA_HOST"),
+        'PORT': os.getenv("PA_DB_PORT"),
     }
 }
 
