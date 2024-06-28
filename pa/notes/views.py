@@ -1,12 +1,6 @@
-import json
-
-from dateutil import parser
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import NoteForm
 from .models import Note, Tag
 
 
@@ -83,17 +77,17 @@ def find_notes(request):
 
 @login_required
 def by_name(request):
-    notes = []
+    result = []
     if request.method == "POST":
         name = request.POST.get("name", "")
-        notes = Note.objects.filter(name__icontains=name, added_by=request.user)
-    return render(request, "notes/search_result.html", {"notes": notes})
+        result = Note.objects.filter(name__icontains=name, added_by=request.user)
+    return render(request, "notes/search_result.html", {"notes": result})
 
 
 @login_required
 def by_tag(request):
-    notes = []
+    result = []
     if request.method == "POST":
         tag = request.POST.get("tag", "")
-        notes = Note.objects.filter(tags__name__icontains=tag, added_by=request.user)
-    return render(request, "notes/search_result.html", {"notes": notes})
+        result = Note.objects.filter(tags__name__icontains=tag, added_by=request.user)
+    return render(request, "notes/search_result.html", {"notes": result})

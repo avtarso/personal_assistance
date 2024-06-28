@@ -1,16 +1,35 @@
 from django import forms
 
 from .models import Contact
+from .validators import EmailValidator, NameValidator, PhoneValidator, BirthdayValidator
 
 
-class NoteForm(forms.ModelForm):
+class ContactForm(forms.ModelForm):
+    name = forms.CharField(
+        max_length=30,
+        required=True,
+        validators=[NameValidator()]
+    )
+    address = forms.CharField(
+        max_length=100,
+        required=False
+    )
+    phone = forms.CharField(
+        max_length=15,
+        required=False,
+        validators=[PhoneValidator()]
+    )
+    email = forms.CharField(
+        max_length=50,
+        required=False,
+        validators=[EmailValidator()]
+    )
+    birthday = forms.CharField(
+        required=False,
+        validators=[BirthdayValidator()]
+    )
+
     class Meta:
         model = Contact
         fields = ["name", "address", "phone", "email", "birthday"]
-        labels = {
-            "name": "Name",
-            "address": "Address",
-            "phone": "Phone",
-            "email": "Email",
-            "birthday": "Birthday"
-        }
+        exclude = ["added_by"]

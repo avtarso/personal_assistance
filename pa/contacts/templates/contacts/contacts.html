@@ -3,10 +3,23 @@
 {% block content%}
 
 <h1>Contacts:</h1>
+<nav>
+    <ul class="menu">
+        <li><a href="{% url 'contacts:create_contact' %}">New contact</a></li>
+        <div>
+            <form action="{% url 'contacts:find_contact' %}" method="post">
+                <label for="id_search_word">Find contact:</label>
+                <input type="text" class="form-control" id="id_search_word" name="search_word">
+                <input type="submit" value="Search" class="btn btn-primary">
+        </div>
+    </ul>
+</nav>
+
 <ul>
     {% for contact in contacts %}
     <li>
-        <strong>{{ contact.name }}</strong>
+        <a href="/contact/{{contact.id}}">{{ contact.name }}</a>
+        <a href="/contact/{{contact.id}}/delete">Delete</a>
         {% endfor %}
     </li>
 </ul>

@@ -13,7 +13,7 @@
 <ul>
     {% for note in notes %}
     <li>
-        <a href="/note/{{note.id}}">{{note.name}}</a><br/><br/>
+        <a href="/note/{{note.id}}">{{note.name}}</a>
         <a href="/note/{{note.id}}/delete">Delete</a>
         {% endfor %}
     </li>

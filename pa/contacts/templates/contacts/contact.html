@@ -1,0 +1,27 @@
+{% extends "quotes/base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+<div>
+    <h1>{{ contact.name }}</h1>
+    <ul class="information">
+        {% if contact.phone %}
+            <li>Phone: {{ contact.phone }}</li>
+        {% endif %}
+        {% if contact.email %}
+            <li>Email: {{ contact.email }}</li>
+        {% endif %}
+        {% if contact.address %}
+            <li>Address: {{ contact.address }}</li>
+        {% endif %}
+        {% if contact.birthday %}
+            <li>Birthday: {{ contact.birthday }}</li>
+        {% endif %}
+    </ul>
+
+    <a href="edit">Edit</a>
+</div>
+
+{% endblock %}
