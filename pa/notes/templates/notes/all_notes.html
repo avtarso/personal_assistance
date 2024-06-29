@@ -2,6 +2,8 @@
 
 {% block content%}
 
+{% csrf_token %}
+
 <h1>List of notes</h1>
 <nav>
     <ul class="menu">
@@ -14,6 +16,15 @@
     {% for note in notes %}
     <li>
         <a href="/note/{{note.id}}">{{note.name}}</a>
+        <ul>
+            {% if note.description %}
+            <li>Description: {{ note.description }}</li>
+            {% endif %}
+            {% if note.tags %}
+            <li>Tags: {% for tag in note.tags.values %} <a href="/all-notes/tag/{{ tag.name }}">#{{ tag.name }}</a> {% endfor %}</li>
+            {% endif %}
+        </ul>
+        <a href="/note/{{note.id}}/edit">Edit</a>
         <a href="/note/{{note.id}}/delete">Delete</a>
         {% endfor %}
     </li>

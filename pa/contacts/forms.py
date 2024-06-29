@@ -24,9 +24,10 @@ class ContactForm(forms.ModelForm):
         required=False,
         validators=[EmailValidator()]
     )
-    birthday = forms.CharField(
+    birthday = forms.DateField(
         required=False,
-        validators=[BirthdayValidator()]
+        validators=[BirthdayValidator()],
+        widget=forms.DateInput(attrs={'type': 'date'})
     )
 
     class Meta:

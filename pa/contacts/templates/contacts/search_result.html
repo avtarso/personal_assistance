@@ -2,12 +2,29 @@
 
 {% block content%}
 
+{% csrf_token %}
+
 <h1>Search result:</h1>
 
 <ul>
     {% for contact in contacts %}
     <li>
         <a href="/contact/{{contact.id}}/">{{contact.name}}</a><br/><br/>
+        <ul>
+            {% if contact.phone %}
+            <li>Phone: {{ contact.phone }}</li>
+            {% endif %}
+            {% if contact.email %}
+            <li>Email: {{ contact.email }}</li>
+            {% endif %}
+            {% if contact.address %}
+            <li>Address: {{ contact.address }}</li>
+            {% endif %}
+            {% if contact.birthday %}
+            <li>Birthday: {{ contact.birthday }}</li>
+            {% endif %}
+        </ul>
+        <a href="/contact/{{contact.id}}/edit">Edit</a>
         <a href="/contact/{{contact.id}}/delete">Delete</a>
         {% endfor %}
     </li>

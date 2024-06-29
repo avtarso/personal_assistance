@@ -9,6 +9,7 @@
 </div>
 
 <form action="{% url 'notes:add_note' %}" method="post">
+    {% csrf_token %}
     <div>
         <div>
             <label for="id_name">Title:</label>
