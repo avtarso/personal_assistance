@@ -7,7 +7,13 @@
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
 
-from news.models import NewsQuote, NewsEconomics, NewsPolitics, NewsWeather
+from news.models import (
+    NewsQuote,
+    NewsEconomics,
+    NewsPolitics,
+    NewsWeather,
+    NewsWeatherByCity,
+)
 
 
 class StripPipeline:
@@ -51,6 +57,15 @@ class DatabasePipeline:
                 day=adapter["day"],
                 month=adapter["month"],
                 degree=adapter["degree"],
+                added_by_id=spider.request_user_id,
+            )
+        elif spider.name == "get_news_weather_by_city":
+            data = NewsWeatherByCity.objects.create(
+                url=adapter["url"],
+                city=adapter["city"],
+                degree=adapter["degree"],
+                cloudy=adapter["cloudy"],
+                humidity=adapter["humidity"],
                 added_by_id=spider.request_user_id,
             )
         else:

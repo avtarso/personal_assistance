@@ -2,23 +2,27 @@
 {% block top %}
     <div class="row mb-4">
         <div class="col">
-            <div class="d-inline-flex d-sm-flex flex-wrap text-center justify-content-between">
-                <div class="flex-fill border border-1 me-1 mb-1 rounded-1">
-                    <a class="btn btn-link btn-sm" href="{% url 'news:economics' %}"><span>Новини - Економіка</span></a>
-                    <a class="btn btn-link btn-sm" href="{% url 'news:economics_get' %}"><span>(Оновити)</span></a>
-                </div>
-                <div class="flex-fill border border-1 me-1 mb-1 rounded-1">
-                    <a class="btn btn-link btn-sm" href="{% url 'news:politics' %}"><span>Новини - Політика</span></a>
-                    <a class="btn btn-link btn-sm" href="{% url 'news:politics_get' %}"><span>(Оновити)</span></a>
-                </div>
-                <div class="flex-fill border border-1 me-1 mb-1 rounded-1">
-                    <a class="btn btn-link btn-sm" href="{% url 'news:weather' %}"><span>Прогноз погоди</span></a>
-                    <a class="btn btn-link btn-sm" href="{% url 'news:weather_get' %}"><span>(Оновити)</span></a>
-                </div>
-                <div class="flex-fill border border-1 me-1 mb-1 rounded-1">
-                    <a class="btn btn-link btn-sm" href="{% url 'news:main' %}"><span>Цитати відомих людей</span></a>
-                    <a class="btn btn-link btn-sm" href="{% url 'news:quotes_get' %}"><span>(Оновити)</span></a>
-                </div>
+            <div class="d-flex flex-wrap text-center justify-content-between">
+                <a class="flex-fill btn btn-light btn-sm border border-1 me-1 mb-1 d-block"
+                   href="{% url 'news:economics' %}">
+                    <div class="fw-bold">Economic News</div>
+                    <div class="small fst-italic">(from ukr.net)</div>
+                </a>
+                <a class="flex-fill btn btn-light btn-sm border border-1 me-1 mb-1 d-block"
+                   href="{% url 'news:politics' %}">
+                    <div class="fw-bold">Political News</div>
+                    <div class="small fst-italic">(from ukr.net)</div>
+                </a>
+                <a class="flex-fill btn btn-light btn-sm border border-1 me-1 mb-1 d-block"
+                   href="{% url 'news:weather' %}">
+                    <div class="fw-bold">Weather</div>
+                    <div class="small fst-italic">(from meteo.ua)</div>
+                </a>
+                <a class="flex-fill btn btn-light btn-sm border border-1 me-1 mb-1 d-block"
+                   href="{% url 'news:main' %}">
+                    <div class="fw-bold">Quotes</div>
+                    <div class="small fst-italic">(from quotes.toscrape.com)</div>
+                </a>
             </div>
         </div>
     </div>
@@ -26,6 +30,19 @@
 {% block h2 %}
     {{ h2 }}
 {% endblock h2 %}
+{% block main_content_header %}
+    {% with url="news:"|add:news_type|add:"_get" %}
+        <div class="row mb-4">
+            <div class="col">
+                <div class="text-center">
+                    <span>Last update time: {{ last_update_time }}</span><a title="Update News"
+   class="btn btn-link btn-sm border border-1 ms-2"
+   href="{% url url %}"><i class="fa-solid fa-rotate"></i></a>
+                </div>
+            </div>
+        </div>
+    {% endwith %}
+{% endblock main_content_header %}
 {% block main_content %}
     {% if page_obj %}
         {% if not show_all_pages or show_items_per_page %}
@@ -38,7 +55,7 @@
         {% if news_type == "weather" %}
             <div class="row mb-4">
                 <div class="col">
-                    <div class="d-inline-flex flex-wrap justify-content-center my-4">
+                    <div class="d-flex flex-wrap justify-content-center my-4">
                         {% for news in page_obj %}
                             {% with url="news/"|add:news_type|add:".html" %}
                                 {% include url %}
