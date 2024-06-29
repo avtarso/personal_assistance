@@ -6,6 +6,7 @@ from django.conf import settings
 from django.utils import timezone
 from datetime import timedelta
 from pa.contacts.models import Contact
+from collections import defaultdict
 
 
 class Command(BaseCommand):
@@ -17,15 +18,24 @@ class Command(BaseCommand):
             birthday__range=(today + timedelta(days=6), today + timedelta(days=7))
         )
 
+        user_contacts = defaultdict(list)
         for contact in upcoming_birthdays:
             if contact.added_by and contact.added_by.email:
+                user_contacts[contact.added_by].append(contact)
+
+        for user, contacts in user_contacts.items():
+            if user.email:
+                contacts_info = '\n'.join(
+                    [f"{contact.name}: {contact.birthday.strftime('%Y-%m-%d')}" for contact in contacts]
+                )
                 send_mail(
                     'Upcoming Birthday Reminder',
-                    f'Hi {contact.added_by.username},\n\n'
-                    f'This is a reminder that your contact {contact.name} has a birthday in 7 days!\n\n'
+                    f'Hi {user.username},\n\n'
+                    f'This is a reminder that your contacts have upcoming birthdays in 7 days:\n\n'
+                    f'{contacts_info}\n\n'
                     'Best regards,\nYour Personal Assistant',
                     settings.EMAIL_HOST_USER,
-                    [contact.added_by.email],
+                    [user.email],
                     fail_silently=False,
                 )
 
