@@ -1,7 +1,40 @@
-{% extends 'quotes/base.html' %} {% block title %}Profile{% endblock %}
+{% extends 'quotes/base.html' %}
+
+{% block title %}Profile{% endblock %}
+
 {% block content %}
 
-<h2>Profile</h2>
-<p>Welcome, {{ user.username }}!</p>
+<section class="_content_block_1">
+    <div class="wr">
+      <div class="_15cacd0c">
+        <div class="_content_left_block">
+          <header class="_af4fe10b">
+            <h2 class="_060ab2a4">Profile</h2>
+            <p class="_defae18f">
+                Page under construction
+            </p>
+          </header>
+        </div>
+        <div class="_content_right_block">
+          <div class="_3f613442">
+            <h4 class="_8239ae20">Welcome, {{ user.username }}!</h4>
+            <div class="_1b1643a8">
+                <p>This page will contain account statistics and some settings in the future.</p>
+                <p>But now you can take advantage of all the functions of the site</p>
+                <ul class="um-nav-links">
+                    <li><a href="{% url 'news:main' %}">News</a></li>
+                    <li><a href="{% url 'contacts:contacts' %}">Contacts</a></li>
+                    <li><a href="{% url 'notes:all_notes' %}">Notes</a></li>
+                    <li><a href="{% url 'storage:file_list' %}">File storage</a></li>
+                    <li><a href="{% url 'users:profile' %}">Profile</a></li>
+                    <li><a href="{% url 'users:logout' %}">Logout</a></li>
+                </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-{% endblock %}
+  {% endblock %}
+
