@@ -4,30 +4,46 @@
 
 {% block content %}
 
-<h2>Upload File</h2>
-{% include 'storage/menu_main.html' %}
-<p>Maximum file size for upload: {{ max_file_size|floatformat:0 }} Mb</p>
-<form id="uploadForm" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Upload file">
-</form>
-<p id="errorMessage" style="color: red;"></p>
-
-<script>
-    document.getElementById('uploadForm').addEventListener('submit', function (event) {
-        var fileInput = document.querySelector('input[type="file"]');
-        var file = fileInput.files[0];
-        var maxSize = {{ max_file_size }};
-
-        if (file.size / 1024 / 1024 > maxSize) {
-            event.preventDefault();
-            document.getElementById('errorMessage').textContent = 'The file size exceeds ' + (maxSize).toFixed(0) + ' Mb. Current size: ' + (file.size / (1024 * 1024)).toFixed(0) + ' Mb.';
-        }
-    });
-</script>
-{% if error %}
-    <p style="color: red;">{{ error }}</p>
-{% endif %}
-
-{% endblock %}
+<section class="_content_block_1">
+    <div class="wr">
+      <div class="_15cacd0c">
+        <div class="_content_left_block">
+          <header class="_af4fe10b">
+            <h2 class="_060ab2a4">Upload File</h2>
+            {% include 'storage/menu_main.html' %}
+          </header>
+        </div>
+        <div class="_content_right_block">
+          <div class="_3f613442">
+            <h4 class="_8239ae20">Maximum file size for upload: {{ max_file_size|floatformat:0 }} Mb</h4>
+            <div class="_1b1643a8">
+                <form id="uploadForm" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Upload file">
+                </form>
+                <p id="errorMessage" style="color: red;"></p>
+                
+                <script>
+                    document.getElementById('uploadForm').addEventListener('submit', function (event) {
+                        var fileInput = document.querySelector('input[type="file"]');
+                        var file = fileInput.files[0];
+                        var maxSize = {{ max_file_size }};
+                
+                        if (file.size / 1024 / 1024 > maxSize) {
+                            event.preventDefault();
+                            document.getElementById('errorMessage').textContent = 'The file size exceeds ' + (maxSize).toFixed(0) + ' Mb. Current size: ' + (file.size / (1024 * 1024)).toFixed(0) + ' Mb.';
+                        }
+                    });
+                </script>
+                {% if error %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  {% endblock %}

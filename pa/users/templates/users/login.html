@@ -1,25 +1,50 @@
-{% extends 'quotes/base.html' %} {% block title %}Login{% endblock %}
+{% extends 'quotes/base.html' %}
+
+{% block title %}Sign In{% endblock %}
+
 {% block content %}
 
-<form action="{% url 'users:login' %}" method="post">
-  {% csrf_token %}
-  <div>
-    <label> Username: {{ form.username }}</label>
+<section class="_content_block_1">
+  <div class="wr">
+    <div class="_15cacd0c">
+      <div class="_content_left_block">
+        <header class="_af4fe10b">
+          <h2 class="_060ab2a4">Sign in</h2>
+          <p class="_defae18f">
+            Welcome
+          </p>
+        </header>
+      </div>
+      <div class="_content_right_block">
+        <div class="_3f613442">
+          <h4 class="_8239ae20">Enter your username and password used during registration</h4>
+          <div class="_1b1643a8">
+            <form action="{% url 'users:login' %}" method="post">
+              {% csrf_token %}
+              <div>
+                <label> Username: {{ form.username }}</label>
+              </div>
+            
+              <div>
+                <label>Password: {{ form.password }} </label>
+              </div>
+            
+              <div class="grid">
+                <button type="submit">Submit</button>
+                <button type="reset" class="secondary">Reset</button>
+              </div>
+              <div class="small text-center">
+                <a href="{% url 'users:password_reset' %}" class="text-center"
+                  ><i>Forgot Password?</i></a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div>
-    <label>Password: {{ form.password }} </label>
-  </div>
-
-  <div class="grid">
-    <button type="submit">Submit</button>
-    <button type="reset" class="secondary">Reset</button>
-  </div>
-  <div class="small text-center">
-    <a href="{% url 'users:password_reset' %}" class="text-center"
-      ><i>Forgot Password?</i></a
-    >
-  </div>
-</form>
+</section>
 
 {% endblock %}
+
