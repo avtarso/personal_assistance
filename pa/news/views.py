@@ -1,4 +1,4 @@
-from django.utils import timezone
+# from django.utils import timezone
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -17,7 +17,7 @@ from news.models import (
     NewsEconomics,
     NewsPolitics,
     NewsWeatherByCity,
-    NewsUpdateTime,
+    # NewsUpdateTime,
 )
 
 
@@ -26,34 +26,34 @@ def get_request_user_id(request):
     return user.id
 
 
-def get_news_last_update_time(request, news_type):
-    try:
-        update_time_item = NewsUpdateTime.objects.filter(
-            added_by=request.user, news_type=news_type
-        ).get()
+# def get_news_last_update_time(request, news_type):
+#     try:
+#         update_time_item = NewsUpdateTime.objects.filter(
+#             added_by=request.user, news_type=news_type
+#         ).get()
 
-        last_update_time = update_time_item.update_time.strftime("%d/%m/%Y %H:%M:%S")
-    except:
-        last_update_time = "Never"
+#         last_update_time = update_time_item.update_time.strftime("%d/%m/%Y %H:%M:%S")
+#     except:
+#         last_update_time = "Never"
 
-    return last_update_time
+#     return last_update_time
 
 
-def set_news_last_update_time(request, news_type):
-    try:
-        update_time_item = NewsUpdateTime.objects.filter(
-            added_by=request.user, news_type=news_type
-        ).get()
+# def set_news_last_update_time(request, news_type):
+#     try:
+#         update_time_item = NewsUpdateTime.objects.filter(
+#             added_by=request.user, news_type=news_type
+#         ).get()
 
-        update_time_item.update_time = timezone.now()
-    except:
-        update_time_item = NewsUpdateTime.objects.create(
-            news_type=news_type,
-            update_time=timezone.now(),
-            added_by_id=get_request_user_id(request),
-        )
-    finally:
-        update_time_item.save()
+#         update_time_item.update_time = timezone.now()
+#     except:
+#         update_time_item = NewsUpdateTime.objects.create(
+#             news_type=news_type,
+#             update_time=timezone.now(),
+#             added_by_id=get_request_user_id(request),
+#         )
+#     finally:
+#         update_time_item.save()
 
 
 def paginations(request, data, item_on_page: int | str, template: str, other_data={}):
@@ -95,7 +95,7 @@ def main(request):
         per_page = item_per_page
 
     news = NewsQuote.objects.filter(added_by=request.user).order_by("id")
-    last_update_time = get_news_last_update_time(request, "quotes")
+    # last_update_time = get_news_last_update_time(request, "quotes")
 
     return paginations(
         request,
@@ -104,7 +104,7 @@ def main(request):
         "news/news.html",
         {
             "per_page": per_page,
-            "last_update_time": last_update_time,
+            # "last_update_time": last_update_time,
             "h2": "Quotes",
             "news_type": "quotes",
         },
@@ -120,7 +120,7 @@ def quotes_get(request):
 
     run_get_news_spider(GetNewsQuotesSpider, uid)
 
-    set_news_last_update_time(request, "quotes")
+    # set_news_last_update_time(request, "quotes")
 
     return redirect(to="news:main")
 
@@ -134,7 +134,7 @@ def economics(request):
         per_page = item_per_page
 
     news = NewsEconomics.objects.filter(added_by=request.user).order_by("id")
-    last_update_time = get_news_last_update_time(request, "economics")
+    # last_update_time = get_news_last_update_time(request, "economics")
 
     return paginations(
         request,
@@ -143,7 +143,7 @@ def economics(request):
         "news/news.html",
         {
             "per_page": per_page,
-            "last_update_time": last_update_time,
+            # "last_update_time": last_update_time,
             "h2": "Economic News",
             "news_type": "economics",
         },
@@ -159,7 +159,7 @@ def economics_get(request):
 
     run_get_news_spider(GetNewsEconomicsSpider, uid)
 
-    set_news_last_update_time(request, "economics")
+    # set_news_last_update_time(request, "economics")
 
     return redirect(to="news:economics")
 
@@ -173,7 +173,7 @@ def politics(request):
         per_page = item_per_page
 
     news = NewsPolitics.objects.filter(added_by=request.user).order_by("id")
-    last_update_time = get_news_last_update_time(request, "politics")
+    # last_update_time = get_news_last_update_time(request, "politics")
 
     return paginations(
         request,
@@ -182,7 +182,7 @@ def politics(request):
         "news/news.html",
         {
             "per_page": per_page,
-            "last_update_time": last_update_time,
+            # "last_update_time": last_update_time,
             "h2": "Political News",
             "news_type": "politics",
         },
@@ -198,7 +198,7 @@ def politics_get(request):
 
     run_get_news_spider(GetNewsPoliticsSpider, uid)
 
-    set_news_last_update_time(request, "politics")
+    # set_news_last_update_time(request, "politics")
 
     return redirect(to="news:politics")
 
@@ -209,7 +209,7 @@ def weather(request):
     show_items_per_page = False
 
     news = NewsWeatherByCity.objects.filter(added_by=request.user).order_by("id")
-    last_update_time = get_news_last_update_time(request, "weather")
+    # last_update_time = get_news_last_update_time(request, "weather")
 
     return paginations(
         request,
@@ -219,7 +219,7 @@ def weather(request):
         {
             "per_page": per_page,
             "show_items_per_page": show_items_per_page,
-            "last_update_time": last_update_time,
+            # "last_update_time": last_update_time,
             "h2": "Weather",
             "news_type": "weather",
         },
@@ -235,6 +235,6 @@ def weather_get(request):
 
     run_get_news_spider(GetNewsWeatherByCitySpider, uid)
 
-    set_news_last_update_time(request, "weather")
+    # set_news_last_update_time(request, "weather")
 
     return redirect(to="news:weather")
