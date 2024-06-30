@@ -4,8 +4,6 @@
 
 {% block content%}
 
-{% endblock %}
-
 <section class="_content_block_1">
     <div class="wr">
       <div class="_15cacd0c">
@@ -27,11 +25,11 @@
                       <br /> <br />
                     {% endfor %}
                 </ul>
+                {% include 'contacts/pagination.html' %}
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  
-  {% endblock %}
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from .models import Note, Tag
 
@@ -13,7 +14,13 @@ def note(request, id):
 @login_required
 def all_notes(request):
     notes = Note.objects.filter(added_by=request.user).order_by("-id")
-    return render(request, "notes/all_notes.html", {"notes": notes})
+    return render(
+        request,
+        "notes/all_notes.html",
+        {
+            "notes": paginator(request, notes)
+        }
+    )
 
 
 @login_required
@@ -82,7 +89,13 @@ def by_name(request):
     if request.method == "POST":
         name = request.POST.get("name", "")
         result = Note.objects.filter(name__icontains=name, added_by=request.user)
-    return render(request, "notes/search_result.html", {"notes": result})
+    return render(
+        request,
+        "notes/search_result.html",
+        {
+            "notes": paginator(request, result)
+        }
+    )
 
 
 @login_required
@@ -91,11 +104,35 @@ def by_tag(request):
     if request.method == "POST":
         tag = request.POST.get("tag", "")
         result = Note.objects.filter(tags__name__icontains=tag, added_by=request.user)
-    return render(request, "notes/search_result.html", {"notes": result})
+    return render(
+        request,
+        "notes/search_result.html",
+        {
+            "notes": paginator(request, result)
+        }
+    )
 
 
 @login_required
 def by_tag_name(request, name):
     tag = get_object_or_404(Tag, name=name)
     result = Note.objects.filter(tags__name__icontains=tag, added_by=request.user)
-    return render(request, "notes/search_result.html", {"notes": result})
+    return render(
+        request,
+        "notes/search_result.html",
+        {
+            "notes": paginator(request, result)
+        }
+    )
+
+
+def paginator(request, data):
+    paginator = Paginator(data, 5)  # Number elements on page
+    page = request.GET.get('page', 1)
+    try:
+        data_paginated = paginator.page(page)
+    except PageNotAnInteger:
+        data_paginated = paginator.page(1)
+    except EmptyPage:
+        data_paginated = paginator.page(paginator.num_pages)
+    return data_paginated

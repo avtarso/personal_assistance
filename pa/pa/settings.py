@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+SECRET_KEY = "________________________________________"
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -104,11 +104,11 @@ WSGI_APPLICATION = "pa.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.getenv("PA_DATA_BASE"),
-        "USER": os.getenv("PA_DB_USER"),
-        "PASSWORD": os.getenv("PA_DB_PASSWORD"),
-        "HOST": os.getenv("PA_HOST"),
-        "PORT": os.getenv("PA_DB_PORT"),
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "localhost",
+        "PORT": 5432,
     }
 }
 
@@ -176,8 +176,8 @@ EMAIL_PORT = 465
 EMAIL_STARTTLS = False
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
-EMAIL_HOST_USER = os.getenv("EMAIL_PERSONAL_ASSISTANT")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PERSONAL_ASSISTANT_PASSWORD")
+EMAIL_HOST_USER = "__________________________________@gmail.com"
+EMAIL_HOST_PASSWORD = "____________________________"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 MAX_FILE_SIZE = 10 * 1024 * 1024
