@@ -1,11 +1,10 @@
-<div class="news p-3 border border-1 rounded-3 shadow-sm mb-1 me-1">
-    <div class="weather-news-day-block">
-        <span class="weather-news-day">{{ news.day }}</span>
-    </div>
-    <div class="weather-news-month-block">
-        <span class="weather-news-month">{{ news.month }}</span>
-    </div>
-    <div class="weather-news-degree-block">
-        <span class="weather-news-degree">{{ news.degree }}</span>
-    </div>
+<div class="weather-news px-2 pb-3 d-flex">
+    <a class="weather-news-info w-100 d-flex flex-column shadow-sm p-3 border border-1 rounded-3 text-center text-decoration-none"
+       href="{{ news.url }}">
+        <div class="weather-news-city-block mb-2">{{ news.city }}</div>
+        <div class="weather-news-icon-block mb-2"></div>
+        <div class="weather-news-degree-block mb-2">{{ news.degree }}</div>
+        <div class="weather-news-cloudy-block mb-2">{{ news.cloudy }}</div>
+        <div class="weather-news-humidity-block">{{ news.humidity }}</div>
+    </a>
 </div>

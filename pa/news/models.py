@@ -40,3 +40,24 @@ class NewsWeather(models.Model):
 
     def __str__(self):
         return f"{self.degree}"
+
+
+class NewsWeatherByCity(models.Model):
+    url = models.CharField(max_length=250, verbose_name="URL")
+    city = models.CharField(max_length=100, verbose_name="City")
+    degree = models.CharField(max_length=50, verbose_name="Degree")
+    cloudy = models.CharField(max_length=100, verbose_name="Cloudy")
+    humidity = models.CharField(max_length=20, verbose_name="Humidity")
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return f"{self.city} {self.degree} {self.cloudy} {self.humidity}"
+
+
+class NewsUpdateTime(models.Model):
+    news_type = models.CharField(max_length=250, verbose_name="News Type")
+    update_time = models.DateTimeField(verbose_name="Creation Time")
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return f"{self.news_type} {self.update_time}"

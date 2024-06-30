@@ -28,3 +28,11 @@ class WeatherItem(scrapy.Item):
     day = scrapy.Field()
     month = scrapy.Field()
     degree = scrapy.Field()
+
+
+class WeatherByCityItem(scrapy.Item):
+    url = scrapy.Field()
+    city = scrapy.Field()
+    degree = scrapy.Field()
+    cloudy = scrapy.Field()
+    humidity = scrapy.Field()
