@@ -1,26 +1,26 @@
 {% extends "news/content_right.html" %}
 {% block top %}
-    <div class="row mb-4">
+    <div class="row my-4">
         <div class="col">
             <div class="d-flex flex-wrap text-center justify-content-between">
-                <a class="flex-fill btn btn-light btn-sm border border-1 me-1 mb-1 d-block"
+                <a class="news-menu-btn flex-fill btn btn-link btn-sm border border-1 me-1 mb-3 d-block shadow"
                    href="{% url 'news:economics' %}">
-                    <div class="fw-bold">Economic News</div>
+                    <div class="news-menu-btn-title">Economic News</div>
                     <div class="small fst-italic">(from ukr.net)</div>
                 </a>
-                <a class="flex-fill btn btn-light btn-sm border border-1 me-1 mb-1 d-block"
+                <a class="news-menu-btn flex-fill btn btn-link btn-sm border border-1 me-1 mb-3 d-block shadow"
                    href="{% url 'news:politics' %}">
-                    <div class="fw-bold">Political News</div>
+                    <div class="news-menu-btn-title">Political News</div>
                     <div class="small fst-italic">(from ukr.net)</div>
                 </a>
-                <a class="flex-fill btn btn-light btn-sm border border-1 me-1 mb-1 d-block"
+                <a class="news-menu-btn flex-fill btn btn-link btn-sm border border-1 me-1 mb-3 d-block shadow"
                    href="{% url 'news:weather' %}">
-                    <div class="fw-bold">Weather</div>
+                    <div class="news-menu-btn-title">Weather</div>
                     <div class="small fst-italic">(from meteo.ua)</div>
                 </a>
-                <a class="flex-fill btn btn-light btn-sm border border-1 me-1 mb-1 d-block"
+                <a class="news-menu-btn flex-fill btn btn-link btn-sm border border-1 me-1 mb-3 d-block shadow"
                    href="{% url 'news:main' %}">
-                    <div class="fw-bold">Quotes</div>
+                    <div class="news-menu-btn-title">Quotes</div>
                     <div class="small fst-italic">(from quotes.toscrape.com)</div>
                 </a>
             </div>
@@ -36,7 +36,7 @@
             <div class="col">
                 <div class="text-center">
                     <a title="Update Data"
-                       class="btn btn-link btn-sm border border-1 ms-2"
+                       class="news-update-data-btn btn btn-link btn-sm border border-1 shadow-sm"
                        href="{% url url %}">Update Data</a>
                 </div>
             </div>
@@ -47,9 +47,7 @@
     {% if page_obj %}
         {% if not show_all_pages or show_items_per_page %}
             <div class="row mb-2">
-                <div class="col"></div>
-                <div class="col-lg-10">{% include "news/items_per_page.html" %}</div>
-                <div class="col"></div>
+                <div class="col">{% include "news/items_per_page.html" %}</div>
             </div>
         {% endif %}
         {% if news_type == "weather" %}
@@ -67,13 +65,11 @@
         {% else %}
             {% for news in page_obj %}
                 <div class="row mb-4">
-                    <div class="col"></div>
-                    <div class="col-lg-10">
+                    <div class="col">
                         {% with url="news/"|add:news_type|add:".html" %}
                             {% include url %}
                         {% endwith %}
                     </div>
-                    <div class="col"></div>
                 </div>
             {% endfor %}
         {% endif %}

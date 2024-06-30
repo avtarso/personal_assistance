@@ -1,8 +1,5 @@
-<div class="news p-3 border border-1 rounded-3 shadow">
-    <div class="politics-news-time-block">
-        <span class="politics-news-time">{{ news.time }}</span>
-    </div>
+<div class="politics-news p-3 border border-1 rounded-3 shadow">
     <div class="politics-news-text-block">
-        <a href="{{ news.url }}"><span class="politics-news-text">{{ news.text }}</span></a>
+        <span class="news-time pe-4 small">{{ news.time }}</span><a class="news-link" href="{{ news.url }}">{{ news.text }}</a>
     </div>
 </div>

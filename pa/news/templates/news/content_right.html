@@ -1,8 +1,8 @@
 {% extends "quotes/base.html" %}
 {% block content %}
-    <div class="row my-4">
-        <div class="col">
-            <div class="container">
+    <section class="news-section">
+        <div class="wr">
+            <div class="container-fruid">
                 {% block top %}
                 {% endblock top %}
             </div>
@@ -10,12 +10,12 @@
                 {% block h2 %}
                 {% endblock h2 %}
             </h2>
-            <div class="container">
+            <div class="container-fruid">
                 {% block main_content_header %}
                 {% endblock main_content_header %}
                 {% block main_content %}
                 {% endblock main_content %}
             </div>
         </div>
-    </div>
+    </section>
 {% endblock content %}
