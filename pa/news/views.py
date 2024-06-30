@@ -1,4 +1,4 @@
-from datetime import datetime
+from django.utils import timezone
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -45,11 +45,11 @@ def set_news_last_update_time(request, news_type):
             added_by=request.user, news_type=news_type
         ).get()
 
-        update_time_item.update_time = datetime.now()
+        update_time_item.update_time = timezone.now()
     except:
         update_time_item = NewsUpdateTime.objects.create(
             news_type=news_type,
-            update_time=datetime.now(),
+            update_time=timezone.now(),
             added_by_id=get_request_user_id(request),
         )
     finally:
