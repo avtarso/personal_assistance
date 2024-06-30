@@ -7,16 +7,17 @@
       <div class="_15cacd0c">
         <div class="_content_left_block">
           <header class="_af4fe10b">
-            <h2 class="_060ab2a4">Details of file</h2>
-            {% include 'storage/menu_main.html' %}
+            <h2 class="_060ab2a4">File storage</h2><br />
+            {% include 'storage/_menu_main.html' %}
+            {% include 'storage/_find_file.html' %}
           </header>
         </div>
         <div class="_content_right_block">
           <div class="_3f613442">
-            <h4 class="_8239ae20">Details of file "{{ file.file_name }}"</h4>
+            <h4 class="_8239ae20">Details of file "{{ file.file_name }}"</h4><br />
             <div class="_1b1643a8">
-                {% include 'storage/info_file.html' %}<br />
-                {% include 'storage/menu_file.html' %}<br /><br />
+                {% include 'storage/_info_file.html' %}<br />
+                {% include 'storage/_menu_file.html' %}<br /><br />
             </div>
           </div>
         </div>

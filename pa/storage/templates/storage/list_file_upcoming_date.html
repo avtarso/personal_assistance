@@ -6,25 +6,26 @@
     <div class="_15cacd0c">
       <div class="_content_left_block">
         <header class="_af4fe10b">
-          <h2 class="_060ab2a4">Expires Soon</h2>
-          {% include 'storage/menu_main.html' %}
+          <h2 class="_060ab2a4">File storage</h2>
+          {% include 'storage/_menu_main.html' %}
+          {% include 'storage/_find_file.html' %}
         </header>
       </div>
       <div class="_content_right_block">
         <div class="_3f613442">
-          <h4 class="_8239ae20"></h4>
+          <h4 class="_8239ae20">List of files with upcoming date review</h4><br />
           <div class="_1b1643a8">
             <ul>
               {% for file in files %}
               <li>
-                {% include 'storage/info_file.html' %}<br />
-                {% include 'storage/menu_file.html' %}<br /><br />
+                {% include 'storage/_info_file.html' %}<br />
+                {% include 'storage/_menu_file.html' %}<br /><br />
               </li>
               {% empty %}
               <li>No files with upcoming date review available.</li>
               {% endfor %}
             </ul>
-            {% include 'storage/pagination.html' %}
+            {% include 'storage/_pagination.html' %}
           </div>
         </div>
       </div>

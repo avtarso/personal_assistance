@@ -9,31 +9,29 @@
     <div class="_15cacd0c">
       <div class="_content_left_block">
         <header class="_af4fe10b">
-          <h2 class="_060ab2a4">Find file</h2>
-          {% include 'storage/menu_main.html' %}
+          <h2 class="_060ab2a4">File storage</h2>
+          {% include 'storage/_menu_main.html' %}
+          {% include 'storage/_find_file.html' %}
         </header>
       </div>
       <div class="_content_right_block">
+
         <div class="_3f613442">
-          <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Find in files</button>
-          </form>
+          <h4 class="_8239ae20">Results of find in files name or description text "{{ find_text }}"</h4><br />
           <div class="_1b1643a8">
             <ul>
               {% if find_text %}
               {% for file in files %}
               <li>
-                {% include 'storage/info_file.html' %}<br />
-                {% include 'storage/menu_file.html' %}<br /><br />
+                {% include 'storage/_info_file.html' %}<br />
+                {% include 'storage/_menu_file.html' %}<br /><br />
               </li>
               {% empty %}
-              <li>No files with text "{{ find_text }} in file name or description""</li>
+              <li>No files with text "{{ find_text }}" in file name or description</li>
               {% endfor %}
               {% endif %}
             </ul>
-          {% include 'storage/pagination.html' %}
+          {% include 'storage/_pagination.html' %}
           </div>
         </div>
       </div>

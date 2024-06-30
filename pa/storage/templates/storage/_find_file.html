@@ -1,0 +1,5 @@
+<form action="{% url 'storage:find_file' %}" method="post" >
+    {% csrf_token %}
+    {{ form_search.as_p }}
+    <button type="submit">Find in files</button>
+  </form>

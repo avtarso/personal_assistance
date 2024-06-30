@@ -1,6 +1,6 @@
 {% extends 'quotes/base.html' %}
 
-{% block title %}Add Tag for file{% endblock %}
+{% block title %}Add Tag for files{% endblock %}
 
 {% block content %}
 
@@ -9,13 +9,14 @@
     <div class="_15cacd0c">
       <div class="_content_left_block">
         <header class="_af4fe10b">
-          <h2 class="_060ab2a4">Add tag</h2>
-          {% include 'storage/menu_main.html' %}
+          <h2 class="_060ab2a4">File storage</h2>
+          {% include 'storage/_menu_main.html' %}
+          {% include 'storage/_find_file.html' %}
         </header>
       </div>
       <div class="_content_right_block">
         <div class="_3f613442">
-          <h4 class="_8239ae20">Add a new Tag</h4>
+          <h4 class="_8239ae20">Add Tag for files</h4><br />
           <div class="_1b1643a8">
             <form method="post">
               {% csrf_token %} {{ form.as_p }}

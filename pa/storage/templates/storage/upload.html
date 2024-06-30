@@ -9,13 +9,14 @@
       <div class="_15cacd0c">
         <div class="_content_left_block">
           <header class="_af4fe10b">
-            <h2 class="_060ab2a4">Upload File</h2>
-            {% include 'storage/menu_main.html' %}
+            <h2 class="_060ab2a4">File storage</h2>
+            {% include 'storage/_menu_main.html' %}
+            {% include 'storage/_find_file.html' %}
           </header>
         </div>
         <div class="_content_right_block">
           <div class="_3f613442">
-            <h4 class="_8239ae20">Maximum file size for upload: {{ max_file_size|floatformat:0 }} Mb</h4>
+            <h4 class="_8239ae20">Maximum file size for upload: {{ max_file_size|floatformat:0 }} Mb</h4><br />
             <div class="_1b1643a8">
                 <form id="uploadForm" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
