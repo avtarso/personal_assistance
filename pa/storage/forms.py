@@ -19,18 +19,13 @@ class FileUploadForm(forms.ModelForm):
         fields = ['description', 'tags', 'attention_date']
         widgets = {
             'description': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
-            'tags': forms.SelectMultiple(),
+            'tags': forms.CheckboxSelectMultiple(attrs={'class': 'checkbox-inline'}),
             'attention_date': forms.DateInput(attrs={'type': 'date'}),
         }
         labels = {
             'description': 'File description',
             'tags': 'Tags',
             'attention_date': 'Date for review',
-        }
-        help_texts = {
-            'description': '<--- Enter the description',
-            'tags': '<--- Select tags',
-            'attention_date': '<--- Enter attention_date',
         }
 
     def clean_file(self):
@@ -44,7 +39,7 @@ class UploadedFileEditForm(forms.ModelForm):
     attention_date = forms.DateField(required=False,
         widget=forms.DateInput(attrs={'type': 'date'}))
     tags = forms.ModelMultipleChoiceField(queryset=FileTag.objects.all(),
-        widget=forms.CheckboxSelectMultiple, required=False)
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'checkbox-inline'}), required=False)
     description = forms.CharField(required=False, widget=forms.Textarea)
 
     class Meta:
@@ -53,4 +48,4 @@ class UploadedFileEditForm(forms.ModelForm):
 
 
 class FileFindForm(forms.Form):
-    find_text = forms.CharField(label='Search', max_length=255, required=False)
+    find_text = forms.CharField(label='', max_length=255, required=False)

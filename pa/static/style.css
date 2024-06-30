@@ -61,7 +61,7 @@ body {
   --color-bg-card: #f8f9fa;
   --fontSize-text: 1em;
   --card-boxShadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
-  --fontSize-title: 2.5em;
+  --fontSize-title: 1.5em;
   --color-text-link: #1864ab;
   --card-borderColor: rgb(239, 239, 239);
   --card-borderWidth: 1px;
@@ -1312,4 +1312,17 @@ a._9b6ced86:hover {
 ._c288f4a7 {
   color: var(--color-text-secondary);
   padding: 10px 0;
+}
+
+.checkbox-inline {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.checkbox-inline label {
+  margin-right: 10px;
 }
