@@ -13,4 +13,5 @@ urlpatterns = [
     path("find-notes/", views.find_notes, name="find_notes"),
     path("by-name/", views.by_name, name="by_name"),
     path("by-tag/", views.by_tag, name="by_tag"),
+    path("all-notes/tag/<str:name>", views.by_tag_name, name="by_tag_name")
 ]

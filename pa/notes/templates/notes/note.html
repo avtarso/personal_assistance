@@ -6,12 +6,17 @@
 
 <div>
     <h1>{{ note.name }}</h1>
-    <h2>{{ note.description }}</h2>
-    {% for tag in note.tags.all %}
-    <small>{{ tag.name }}</small>
-    {% endfor %}
+    <ul>
+        {% if note.description %}
+        <li>Description: {{ note.description }}</li>
+        {% endif %}
+        {% if note.tags %}
+        <li>Tags: {% for tag in note.tags.values %} <a href="/all-notes/tag/{{ tag.name }}">#{{ tag.name }}</a> {% endfor %}</li>
+        {% endif %}
+    </ul>
 
-    <a href="edit">Edit note</a>
+    <a href="edit">Edit</a>
+    <a href="delete">Delete</a>
 </div>
 
 {% endblock %}

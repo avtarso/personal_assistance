@@ -4,6 +4,8 @@
 
 {% load static %}
 
+{% csrf_token %}
+
 <div>
     <h1>{{ contact.name }}</h1>
     <ul class="information">
@@ -22,6 +24,7 @@
     </ul>
 
     <a href="edit">Edit</a>
+    <a href="delete">Delete</a>
 </div>
 
 {% endblock %}

@@ -1,32 +1,48 @@
-{% extends 'quotes/base.html' %} {% block title %}List of files with tag{% endblock %}
+{% extends 'quotes/base.html' %}
+{% block title %}List of files with tag"{{ tag.name }}"{% endblock %}
 {% block content %}
 
-{% if tag %}
-<h1>List of files with tag "{{ tag.name }}"</h1>
-{% endif %}
-{% if not tag %}
-<h1>List of files without tag</h1>
-{% endif %}
+<section class="_content_block_1">
+  <div class="wr">
+    <div class="_15cacd0c">
+      <div class="_content_left_block">
+        <header class="_af4fe10b">
+          <h2 class="_060ab2a4">File list</h2>
+          {% include 'storage/menu_main.html' %}
+        </header>
+      </div>
+      <div class="_content_right_block">
+        <div class="_3f613442">
+          <h4 class="_8239ae20">            
+            {% if tag %}
+            <h1>List of files with tag "{{ tag.name }}"</h1>
+            {% endif %}
+            {% if not tag %}
+            <h1>List of files without tag</h1>
+            {% endif %}</h4>
+          <div class="_1b1643a8">
+            <ul>
+              {% if tag %}
+              <li>
+                You can do with tag "{{ tag.name }}" - 
+              {% include 'storage/menu_tag.html' %}<br /><br />    
+              </li>
+              {% endif %}
+              {% for file in files %}
+              <li>
+                {% include 'storage/info_file.html' %}<br />
+                {% include 'storage/menu_file.html' %}<br /><br />
+              </li>
+              {% empty %}
+              <li>No files with tag "{{ tag.name }}"</li>
+              {% endfor %}
+            </ul>
+            {% include 'storage/pagination.html' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-{% include 'storage/menu_main.html' %}
-<ul>
-
-  {% if tag %}
-  <li>
-    You can do with tag "{{ tag.name }}" - 
-  {% include 'storage/menu_tag.html' %}<br /><br />    
-  </li>
-  {% endif %}
-
-  {% for file in files %}
-  <li>
-    {% include 'storage/info_file.html' %}<br />
-    {% include 'storage/menu_file.html' %}<br /><br />
-  </li>
-  {% empty %}
-  <li>No files with tag "{{ tag.name }}"</li>
-  {% endfor %}
-  
-</ul>
-{% include 'storage/pagination.html' %}
 {% endblock %}

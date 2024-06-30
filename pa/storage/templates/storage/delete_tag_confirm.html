@@ -1,9 +1,27 @@
 {% extends 'quotes/base.html' %}
 {% block title %}Delete Tag {{ tag.name }} {% endblock %}
 {% block content %}
-<h1>Delete tag "{{ tag.name }}"" </h1>
-{% include 'storage/menu_main.html' %}
-<br />
-Are you sure you want to delete the Tag "{{ tag.name }}"? - 
-    <a href="{% url 'storage:delete_tag_confirmed' tag.id %}">Delete</a><br /> 
-{% endblock %}
+
+<section class="_content_block_1">
+    <div class="wr">
+      <div class="_15cacd0c">
+        <div class="_content_left_block">
+          <header class="_af4fe10b">
+            <h2 class="_060ab2a4">Delete tag</h2>
+            {% include 'storage/menu_main.html' %}
+          </header>
+        </div>
+        <div class="_content_right_block">
+          <div class="_3f613442">
+            <h4 class="_8239ae20">Delete tag "{{ tag.name }}"</h4>
+            <div class="_1b1643a8">
+                Are you sure you want to delete the Tag "{{ tag.name }}"? - 
+                <a href="{% url 'storage:delete_tag_confirmed' tag.id %}">Delete</a><br /> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  {% endblock %}

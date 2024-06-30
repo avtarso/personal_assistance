@@ -10,7 +10,7 @@ from .views import (ActivateAccountView, ActivationSuccessView,
 app_name = "users"
 
 urlpatterns = [
-    path("", views.users_main, name="users_main"),
+    # path("", views.users_main, name="users_main"),
     path("register/", RegisterView.as_view(), name="register"),
     path("activate/<uidb64>/<token>/", ActivateAccountView.as_view(), name="activate"),
     path(

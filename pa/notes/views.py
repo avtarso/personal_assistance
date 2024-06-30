@@ -50,9 +50,10 @@ def edit_note(request, id):
 
         raw_tags = request.POST["new_tags"]
         tags = []
-        for t in raw_tags:
-            tag, _ = Tag.objects.get_or_create(name=t.strip())
-            tags.append(tag)
+        for t in raw_tags.split(','):
+            if len(t) != 0:
+                tag, _ = Tag.objects.get_or_create(name=t.strip())
+                tags.append(tag)
 
         note.tags.set(tags)
         note.save()
@@ -90,4 +91,11 @@ def by_tag(request):
     if request.method == "POST":
         tag = request.POST.get("tag", "")
         result = Note.objects.filter(tags__name__icontains=tag, added_by=request.user)
+    return render(request, "notes/search_result.html", {"notes": result})
+
+
+@login_required
+def by_tag_name(request, name):
+    tag = get_object_or_404(Tag, name=name)
+    result = Note.objects.filter(tags__name__icontains=tag, added_by=request.user)
     return render(request, "notes/search_result.html", {"notes": result})

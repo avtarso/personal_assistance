@@ -1,8 +1,33 @@
 {% extends 'quotes/base.html' %}
 
+{% block title %}Activation Success{% endblock %}
+
 {% block content %}
 
-<h1>Activation Success</h1>
-<p>Your account has been successfully activated!</p>
+<section class="_content_block_1">
+    <div class="wr">
+      <div class="_15cacd0c">
+        <div class="_content_left_block">
+          <header class="_af4fe10b">
+            <h2 class="_060ab2a4">Ok!</h2>
+            <p class="_defae18f"></p>
+          </header>
+        </div>
+        <div class="_content_right_block">
+          <div class="_3f613442">
+            <h4 class="_8239ae20">Activation Success</h4>
+            <div class="_1b1643a8">
+              <p>Your account has been successfully activated!</p>
+              <p>You can now log into your account</p>
+                <div class="um-nav-buttons">
+                  <a href="{% url 'users:login' %}" class="_ad787885 btn">
+                    <span>Sign In</span></a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-{% endblock %}
+  {% endblock %}
