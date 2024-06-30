@@ -16,10 +16,14 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from quotes import views as quotes_views
 from users import views as user_views
 from storage import views as storage_views
+
+from .api import NewsQuoteResource
+
+news_quote_resource = NewsQuoteResource()
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -29,5 +33,6 @@ urlpatterns = [
     path("users/", include("users.urls")),
     path("quotes/", include("quotes.urls")),
     path("news/", include("news.urls")),
-    path('storage/', include('storage.urls')),
+    path("storage/", include("storage.urls")),
+    re_path(r"^api/", include(news_quote_resource.urls)),
 ]
