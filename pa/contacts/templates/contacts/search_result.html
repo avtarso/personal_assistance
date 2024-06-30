@@ -1,34 +1,37 @@
 {% extends 'quotes/base.html' %}
 
+{% block title %}Search result{% endblock %}
+
 {% block content%}
 
-{% csrf_token %}
-
-<h1>Search result:</h1>
-
-<ul>
-    {% for contact in contacts %}
-    <li>
-        <a href="/contact/{{contact.id}}/">{{contact.name}}</a><br/><br/>
-        <ul>
-            {% if contact.phone %}
-            <li>Phone: {{ contact.phone }}</li>
-            {% endif %}
-            {% if contact.email %}
-            <li>Email: {{ contact.email }}</li>
-            {% endif %}
-            {% if contact.address %}
-            <li>Address: {{ contact.address }}</li>
-            {% endif %}
-            {% if contact.birthday %}
-            <li>Birthday: {{ contact.birthday }}</li>
-            {% endif %}
-        </ul>
-        <a href="/contact/{{contact.id}}/edit">Edit</a>
-        <a href="/contact/{{contact.id}}/delete">Delete</a>
-        {% endfor %}
-    </li>
-</ul>
-
-
 {% endblock %}
+
+<section class="_content_block_1">
+    <div class="wr">
+      <div class="_15cacd0c">
+        <div class="_content_left_block">
+          <header class="_af4fe10b">
+            <h2 class="_060ab2a4">Contacts</h2>
+            {% include 'contacts/_contacts_menu.html' %}
+          </header>
+        </div>
+        <div class="_content_right_block">
+          <div class="_3f613442">
+            <h4 class="_8239ae20">Search result:</h4>
+            <br />
+            <div class="_1b1643a8">
+                <ul>
+                    {% for contact in contacts %}
+                      {% include 'contacts/_contact_detail.html' %}
+                      {% include 'contacts/_contact_menu.html' %}
+                      <br /> <br />
+                    {% endfor %}
+                </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  {% endblock %}

@@ -1,30 +1,40 @@
-{% extends "quotes/base.html" %}
+{% extends 'quotes/base.html' %}
 
-{% block content %}
+{% block title %}Full info contact - {{ contact.name }}{% endblock %}
 
-{% load static %}
+{% block content%}
 
-{% csrf_token %}
+<section class="_content_block_1">
+    <div class="wr">
+      <div class="_15cacd0c">
+        <div class="_content_left_block">
+          <header class="_af4fe10b">
+            <h2 class="_060ab2a4">Contacts</h2>
+            {% include 'contacts/_contacts_menu.html' %}
+            <form action="{% url 'contacts:find_contact' %}" method="post">
+                {% csrf_token %}
+                <input type="text" class="form-control" id="id_search_word" name="search_word">
+                <input type="submit" value="Search" class="btn btn-primary">
+            </form> 
+          </header>
+        </div>
+        <div class="_content_right_block">
+          <div class="_3f613442">
+            <h4 class="_8239ae20">Details of contact "{{ contact.name }}"</h4>
+            <br />
+            <div class="_1b1643a8">
+                <div>
+                    {% include 'contacts/_contact_detail.html' %}
+                    {% include 'contacts/_contact_menu.html' %}
 
-<div>
-    <h1>{{ contact.name }}</h1>
-    <ul class="information">
-        {% if contact.phone %}
-            <li>Phone: {{ contact.phone }}</li>
-        {% endif %}
-        {% if contact.email %}
-            <li>Email: {{ contact.email }}</li>
-        {% endif %}
-        {% if contact.address %}
-            <li>Address: {{ contact.address }}</li>
-        {% endif %}
-        {% if contact.birthday %}
-            <li>Birthday: {{ contact.birthday }}</li>
-        {% endif %}
-    </ul>
-
-    <a href="edit">Edit</a>
-    <a href="delete">Delete</a>
-</div>
-
-{% endblock %}
+                    <br /><br />
+                    <li><a href="{% url 'contacts:contacts' %}">Go to all contacts</a></li>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  {% endblock %}

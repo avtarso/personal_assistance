@@ -25,7 +25,7 @@ def create_contact(request):
             contact = form.save()
             contact.added_by = request.user
             contact.save()
-            return redirect("contacts:contacts")
+            return redirect("contacts:contact", contact.id)
         else:
             return render(request, "contacts/create_contact.html", {"form": form})
     return render(request, "contacts/create_contact.html", {"form": ContactForm()})
@@ -38,7 +38,7 @@ def edit_contact(request, id):
         form = ContactForm(request.POST, instance=contact)
         if form.is_valid():
             form.save()
-            return redirect("contacts:contacts")
+            return redirect("contacts:contact", id)
     else:
         form = ContactForm(instance=contact)
 

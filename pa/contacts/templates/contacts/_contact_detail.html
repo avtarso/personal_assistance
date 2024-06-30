@@ -1,0 +1,15 @@
+<strong>{{ contact.name }}</strong>
+<ul class="information">
+    {% if contact.phone %}
+        <li>Phone: {{ contact.phone }}</li>
+    {% endif %}
+    {% if contact.email %}
+        <li>Email: {{ contact.email }}</li>
+    {% endif %}
+    {% if contact.address %}
+        <li>Address: {{ contact.address }}</li>
+    {% endif %}
+    {% if contact.birthday %}
+        <li>Birthday: {{ contact.birthday }}</li>
+    {% endif %}
+</ul>

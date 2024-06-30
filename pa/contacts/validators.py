@@ -1,4 +1,5 @@
 import re
+import datetime
 
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext
@@ -44,13 +45,19 @@ class PhoneValidator:
 
 
 class BirthdayValidator:
-
     def __call__(self, value):
-        if not re.match(r'^\d{4}-\d{2}-\d{2}$', value):
+        if isinstance(value, (str, bytes)):
+            if not re.match(r'^\d{4}-\d{2}-\d{2}$', value):
+                raise ValidationError(
+                    gettext("Birthday format is 'YYYY-MM-DD'"),
+                    code='invalid_date'
+                )
+        elif isinstance(value, (datetime.date, datetime.datetime)):
+            pass
+        else:
             raise ValidationError(
-                gettext("Birthday format is 'YYYY-MM-DD'"),
+                gettext("Enter a valid date."),
                 code='invalid_date'
             )
-
     def get_help_text(self):
         return gettext("Enter a valid date.")
