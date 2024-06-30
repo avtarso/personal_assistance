@@ -1,0 +1,16 @@
+<div class="pagination">
+    <span class="step-links">
+        {% if contacts.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ files.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="current">
+            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
+
+        {% if contacts.has_next %}
+            <a href="?page={{ files.next_page_number }}">next</a>
+            <a href="?page={{ files.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>

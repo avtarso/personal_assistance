@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from .models import Contact
 from .forms import ContactForm
@@ -14,7 +15,13 @@ def contact(request, id):
 @login_required
 def contacts(request):
     contacts = Contact.objects.filter(added_by=request.user).all()
-    return render(request, "contacts/contacts.html", {"contacts": contacts})
+    return render(
+        request,
+        "contacts/contacts.html",
+        {
+            "contacts": paginator(request, contacts)
+        }
+    )
 
 
 @login_required
@@ -64,7 +71,22 @@ def find_contact(request):
             result = Contact.objects.filter(email__icontains=search_word, added_by=request.user)
         if not result.exists():
             result = Contact.objects.filter(phone__icontains=search_word, added_by=request.user)
-    return render(request, "contacts/search_result.html", {"contacts": result})
+    return render(
+        request,
+        "contacts/search_result.html",
+        {
+            "contacts": paginator(request, result)
+        }
+    )
 
 
-
+def paginator(request, data):
+    paginator = Paginator(data, 5)  # Number elements on page
+    page = request.GET.get('page', 1)
+    try:
+        data_paginated = paginator.page(page)
+    except PageNotAnInteger:
+        data_paginated = paginator.page(1)
+    except EmptyPage:
+        data_paginated = paginator.page(paginator.num_pages)
+    return data_paginated

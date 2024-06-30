@@ -1,34 +1,50 @@
 {% extends 'quotes/base.html' %}
 
+{% block title %}Notes{% endblock %}
+
 {% block content%}
 
-{% csrf_token %}
-
-<h1>List of notes</h1>
-<nav>
-    <ul class="menu">
-        <li><a href="{% url 'notes:add_note' %}">New note</a></li>
-        <li><a href="{% url 'notes:find_notes' %}">Find notes</a></li>
-    </ul>
-</nav>
-
-<ul>
-    {% for note in notes %}
-    <li>
-        <a href="/note/{{note.id}}">{{note.name}}</a>
-        <ul>
-            {% if note.description %}
-            <li>Description: {{ note.description }}</li>
-            {% endif %}
-            {% if note.tags %}
-            <li>Tags: {% for tag in note.tags.values %} <a href="/all-notes/tag/{{ tag.name }}">#{{ tag.name }}</a> {% endfor %}</li>
-            {% endif %}
-        </ul>
-        <a href="/note/{{note.id}}/edit">Edit</a>
-        <a href="/note/{{note.id}}/delete">Delete</a>
-        {% endfor %}
-    </li>
-</ul>
-
+<section class="_content_block_1">
+    <div class="wr">
+        <div class="_15cacd0c">
+            <div class="_content_left_block">
+                <header class="_af4fe10b">
+                    <h2 class="_060ab2a4">List of Notes</h2>
+                    <ul class="menu">
+                        <li><a href="{% url 'notes:add_note' %}">New Note</a></li>
+                        <li><a href="{% url 'notes:find_notes' %}">Find Notes</a></li>
+                    </ul>
+                </header>
+            </div>
+            <div class="_content_right_block">
+                <div class="_3f613442">
+                    <h4 class="_8239ae20">Notes</h4>
+                    <br />
+                    <div class="_1b1643a8">
+                        <ul>
+                            {% for note in notes %}
+                                <li>
+                                    <a href="/note/{{note.id}}">{{note.name}}</a>
+                                    <ul>
+                                        {% if note.description %}
+                                            <li>Description: {{ note.description }}</li>
+                                        {% endif %}
+                                        {% if note.tags %}
+                                            <li>Tags: {% for tag in note.tags.values %} <a href="/all-notes/tag/{{ tag.name }}">#{{ tag.name }}</a> {% endfor %}</li>
+                                        {% endif %}
+                                    </ul>
+                                    <a href="/note/{{note.id}}/edit">Edit</a>
+                                    <a href="/note/{{note.id}}/delete">Delete</a>
+                                </li>
+                                <br /><br />
+                            {% endfor %}
+                        </ul>
+                        {% include 'notes/pagination.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
