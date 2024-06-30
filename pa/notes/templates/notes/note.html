@@ -1,22 +1,30 @@
 {% extends "quotes/base.html" %}
 
+{% block title %}Details of Note "{{ note.name }}"{% endblock %}
+
 {% block content %}
 
-{% load static %}
-
-<div>
-    <h1>{{ note.name }}</h1>
-    <ul>
-        {% if note.description %}
-        <li>Description: {{ note.description }}</li>
-        {% endif %}
-        {% if note.tags %}
-        <li>Tags: {% for tag in note.tags.values %} <a href="/all-notes/tag/{{ tag.name }}">#{{ tag.name }}</a> {% endfor %}</li>
-        {% endif %}
-    </ul>
-
-    <a href="edit">Edit</a>
-    <a href="delete">Delete</a>
-</div>
+<section class="_content_block_1">
+    <div class="wr">
+        <div class="_15cacd0c">
+            <div class="_content_left_block">
+                <header class="_af4fe10b">
+                    <h2 class="_060ab2a4">Notes</h2>
+                    {% include 'notes/_notes_menu.html' %}
+                    {% include 'notes/_search_form.html' %}
+                </header>
+            </div>
+            <div class="_content_right_block">
+                <div class="_3f613442">
+                    <h4 class="_8239ae20">Details of Note "{{ note.name }}"</h4>
+                    <br />
+                    <div class="_1b1643a8">
+                        {% include 'notes/_note_detail.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

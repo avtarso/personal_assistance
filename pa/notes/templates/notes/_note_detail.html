@@ -1,0 +1,10 @@
+    <strong>{{ note.name }}</stronf>
+    <ul>
+        {% if note.description %}
+        <li>Description: {{ note.description }}</li>
+        {% endif %}
+        {% if note.tags %}
+        <li>Tags: {% for tag in note.tags.values %} <a href="/all-notes/tag/{{ tag.name }}">#{{ tag.name }}</a> {% endfor %}</li>
+        {% endif %}
+    </ul>
+    <a href="edit">Edit</a> - <a href="delete">Delete</a>

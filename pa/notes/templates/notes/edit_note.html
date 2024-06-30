@@ -1,37 +1,51 @@
 {% extends "quotes/base.html" %}
 
+{% block title %}Edit note - "{{ note.name }}"{% endblock %}
+
 {% block content %}
 
-<div>
-    <h2>Enter new information for {{ note.name }}</h2>
-</div>
-
-<form method="post">
-    {% csrf_token %}
-    <div class="row" bis_skin_checked="1">
-        <div class="form-group col-xs-3" bis_skin_checked="1">
-            <label for="id_new_name">Title:</label>
-            <input type="text" class="form-control" id="id_new_name" name="new_name" value="{{ note.name }}">
+<section class="_content_block_1">
+    <div class="wr">
+        <div class="_15cacd0c">
+            <div class="_content_left_block">
+                <header class="_af4fe10b">
+                    <h2 class="_060ab2a4">Notes</h2>
+                    {% include 'notes/_notes_menu.html' %}
+                    {% include 'notes/_search_form.html' %}
+                </header>
+            </div>
+            <div class="_content_right_block">
+                <div class="_3f613442">
+                    <h4 class="_8239ae20">Enter new information for {{ note.name }}</h4>
+                    <br />
+                    <div class="_1b1643a8">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="row" bis_skin_checked="1">
+                                <div class="form-group col-xs-3" bis_skin_checked="1">
+                                    <label for="id_new_name">Title:</label>
+                                    <input type="text" class="form-control" id="id_new_name" name="new_name" value="{{ note.name }}">
+                                </div>
+                            </div>
+                            <div class="row" bis_skin_checked="1">
+                                <div class="form-group col-xs-3" bis_skin_checked="1">
+                                    <label for="id_new_description">Description:</label>
+                                    <input type="text" class="form-control" id="id_new_description" name="new_description" value="{{ note.description }}">
+                                </div>
+                            </div>
+                            <div class="row" bis_skin_checked="1">
+                                <div class="form-group col-xs-3" bis_skin_checked="1">
+                                    <label for="id_new_tags">Tags:</label>
+                                    <input type="text" class="form-control" id="id_new_tags" name="new_tags" value="{% for tag in note.tags.values %} {{ tag.name }},{% endfor %}">
+                                </div>
+                            </div>
+                            <input type="submit" value="Confirm" class="btn btn-primary">
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="row" bis_skin_checked="1">
-        <div class="form-group col-xs-3" bis_skin_checked="1">
-            <label for="id_new_description">Description:</label>
-            <input type="text" class="form-control" id="id_new_description" name="new_description" value="{{ note.description }}">
-        </div>
-    </div>
-
-    <div class="row" bis_skin_checked="1">
-        <div class="form-group col-xs-3" bis_skin_checked="1">
-            <label for="id_new_tags">Tags:</label>
-            <input type="text" class="form-control" id="id_new_tags" name="new_tags" value="{% for tag in note.tags.values %} {{ tag.name }},{% endfor %}">
-        </div>
-    </div>
-
-
-    <input type="submit" value="Confirm" class="btn btn-primary">
-
-</form>
+</section>
 
 {% endblock %}

@@ -1,17 +1,36 @@
 {% extends 'quotes/base.html' %}
 
+{% block title %}Delete Note{% endblock %}
+
 {% block content%}
 
-<head>
-    <title>Delete Note</title>
-</head>
-<body>
-    <h1>Are you sure you want to delete the note "{{ note.name }}"?</h1>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Yes, delete</button>
-        <a href="{% url 'notes:all_notes' %}">Cancel</a>
-    </form>
-</body>
+<section class="_content_block_1">
+    <div class="wr">
+        <div class="_15cacd0c">
+            <div class="_content_left_block">
+                <header class="_af4fe10b">
+                    <h2 class="_060ab2a4">Notes</h2>
+                    {% include 'notes/_notes_menu.html' %}
+                    {% include 'notes/_search_form.html' %}
+                </header>
+            </div>
+            <div class="_content_right_block">
+                <div class="_3f613442">
+                    <h4 class="_8239ae20">Delete Note "{{ note.name }}"</h4>
+                    <br />
+                    <div class="_1b1643a8">
+                        <strong>Are you sure you want to delete the note "{{ note.name }}"?</strong>
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type="submit">Yes, delete</button>
+                            <a href="{% url 'notes:all_notes' %}">Cancel</a>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

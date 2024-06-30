@@ -1,39 +1,45 @@
 {% extends "quotes/base.html" %}
 
+{% block title %}Add note{% endblock %}
+
 {% block content %}
 
-{% load static %}
-
-<div>
-    <h2>Add new note</h2>
-</div>
-
-<form action="{% url 'notes:add_note' %}" method="post">
-    {% csrf_token %}
-    <div>
-        <div>
-            <label for="id_name">Title:</label>
-            <input type="text" class="form-control" id="id_name" name="name">
+<section class="_content_block_1">
+    <div class="wr">
+        <div class="_15cacd0c">
+            <div class="_content_left_block">
+                <header class="_af4fe10b">
+                    <h2 class="_060ab2a4">Notes</h2>
+                    {% include 'notes/_notes_menu.html' %}
+                    {% include 'notes/_search_form.html' %}
+                </header>
+            </div>
+            <div class="_content_right_block">
+                <div class="_3f613442">
+                    <h4 class="_8239ae20">Add new note</h4>
+                    <br />
+                    <div class="_1b1643a8">
+                        <form action="{% url 'notes:add_note' %}" method="post">
+                            {% csrf_token %}
+                            <div>
+                                <label for="id_name">Title:</label>
+                                <input type="text" class="form-control" id="id_name" name="name">
+                            </div>
+                            <div>
+                                <label for="id_description">Description:</label>
+                                <input type="text" class="form-control" id="id_description" name="description">
+                            </div>
+                            <div>
+                                <label for="id_tags">Tags:</label>
+                                <input type="text" class="form-control" id="id_tags" name="tags">
+                            </div>
+                            <input type="submit" value="Add" class="btn btn-primary">
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div>
-        <div>
-            <label for="id_description">Description:</label>
-            <input type="text" class="form-control" id="id_description" name="description">
-        </div>
-    </div>
-
-    <div>
-        <div>
-            <label for="id_tags">Tags:</label>
-            <input type="text" class="form-control" id="id_tags" name="tags">
-        </div>
-    </div>
-
-    <input type="submit" value="Add" class="btn btn-primary">
-
-</form>
-
+</section>
 
 {% endblock %}
