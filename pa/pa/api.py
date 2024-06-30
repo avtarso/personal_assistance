@@ -49,6 +49,8 @@ class NewsQuoteResource(ModelResource):
             "id", flat=True
         )
 
-        id = choice(ids)
-
-        return object_list.filter(added_by=bundle.request.user, id=id)
+        if ids:
+            id = choice(ids)
+            return object_list.filter(added_by=bundle.request.user, id=id)
+        else:
+            return ids
