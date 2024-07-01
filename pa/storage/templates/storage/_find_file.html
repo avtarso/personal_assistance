@@ -2,6 +2,11 @@
       action="{% url 'storage:find_file' %}"
       method="post">
     {% csrf_token %}
-    {{ form_search }}
-    <button class="btn btn-light btn-sm border border-1 ms-1" type="submit">Search</button>
+    <input type="text"
+           class="form-control"
+           id="id_search_word"
+           name="search_word">
+    <input type="submit"
+           value="Search"
+           class="btn btn-light btn-sm border border-1 ms-1">
 </form>
