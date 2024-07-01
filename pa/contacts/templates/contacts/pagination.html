@@ -9,8 +9,9 @@
         </span>
 
         {% if contacts.has_next %}
-            <a href="?page={{ files.next_page_number }}">next</a>
-            <a href="?page={{ files.paginator.num_pages }}">last &raquo;</a>
+            <a href="?page={{ contacts.next_page_number }}">next</a>
+            <a href="?page={{ contacts.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span>
 </div>
+

@@ -1050,11 +1050,6 @@ a._9b6ced86:hover {
   max-width: 100%;
   border-radius: calc(var(--card-borderRadius) / 2);
 }
-._1923fe83 {
-  position: relative;
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
 ._688645d8 {
   color: var(--color-accent-primary);
   margin-top: 0;
@@ -1077,7 +1072,7 @@ a._9b6ced86:hover {
 }
 ._d7c3134c {
   color: var(--card-textColorSecondary);
-  width: calc(33.333% - 2em);
+  width: calc(25% - 1em);
   display: flex;
   background: var(--card-bg);
   box-shadow: var(--card-boxShadow);
@@ -1130,12 +1125,6 @@ a._9b6ced86:hover {
 }
 ._aa3545e6 svg {
   position: relative;
-}
-._40c675ce {
-  color: var(--card-textColorPrimary, var(--color-text-primary));
-  margin-top: 0;
-  font-weight: var(--fontWeight-text-medium);
-  margin-bottom: 0.5em;
 }
 ._5da1b81b {
   font-size: 0.95em;
@@ -1304,4 +1293,19 @@ a._9b6ced86:hover {
 
 .checkbox-inline label {
   margin-right: 10px;
+}
+
+
+.team_photo {
+
+  width: 100%;
+}
+._1923fe83 {
+position: relative;
+}
+._40c675ce {
+color: var(--card-textColorPrimary, var(--color-text-primary));
+margin-top: 10;
+font-weight: var(--fontWeight-text-medium);
+margin-bottom: 0.5em;
 }
