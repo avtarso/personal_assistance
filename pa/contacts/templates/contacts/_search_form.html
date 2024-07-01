@@ -1,5 +1,12 @@
-<form action="{% url 'contacts:find_contact' %}" method="post">
+<form class="search-form"
+      action="{% url 'contacts:find_contact' %}"
+      method="post">
     {% csrf_token %}
-    <input type="text" class="form-control" id="id_search_word" name="search_word">
-    <input type="submit" value="Search" class="btn btn-primary">
-</form> 
+    <input type="text"
+           class="form-control"
+           id="id_search_word"
+           name="search_word">
+    <input type="submit"
+           value="Search"
+           class="btn btn-light btn-sm border border-1 ms-1">
+</form>

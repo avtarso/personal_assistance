@@ -1,20 +1,36 @@
 {% extends "quotes/base.html" %}
 {% block content %}
-    <section class="news-section">
+    <section class="_content_block_1">
         <div class="wr">
-            <div class="container-fruid">
-                {% block top %}
-                {% endblock top %}
-            </div>
-            <h2 class="text-center">
-                {% block h2 %}
-                {% endblock h2 %}
-            </h2>
-            <div class="container-fruid">
-                {% block main_content_header %}
-                {% endblock main_content_header %}
-                {% block main_content %}
-                {% endblock main_content %}
+            <div class="_15cacd0c">
+                <div class="_content_left_block">
+                    <header class="_af4fe10b">
+                        <h2 class="_060ab2a4">News</h2>
+                        {% block left_content %}
+                        {% endblock left_content %}
+                    </header>
+                </div>
+                <div class="_content_right_block">
+                    <div class="_3f613442">
+                        {% comment %} <div class="container-fruid">
+                            {% block top %}
+                            {% endblock top %}
+                        </div> {% endcomment %}
+                        <h4 class="_8239ae20">
+                            {% block h4 %}
+                            {% endblock h4 %}
+                        </h4>
+                        <br>
+                        <div class="_1b1643a8">
+                            <div class="container-fruid">
+                                {% block main_content_header %}
+                                {% endblock main_content_header %}
+                                {% block main_content %}
+                                {% endblock main_content %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

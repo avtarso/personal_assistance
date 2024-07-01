@@ -11,7 +11,7 @@ IF [%choice%]==[] SET choice=y
 SET or_=
 IF %choice%==y SET or_=true
 IF %choice%==Y SET or_=true
-IF DEFINED or_ GOTO :SETENV ELSE GOTO :SKIPSETENV
+IF DEFINED or_ ( GOTO :SETENV ) ELSE ( GOTO :SKIPSETENV )
 
 :SETENV
 
@@ -70,7 +70,7 @@ IF [%choice%]==[] SET choice=y
 SET or_=
 IF %choice%==y SET or_=true
 IF %choice%==Y SET or_=true
-IF DEFINED or_ GOTO :RUNDOCKER ELSE GOTO :SKIPDOCKER
+IF DEFINED or_ ( GOTO :RUNDOCKER ) ELSE ( GOTO :SKIPDOCKER )
 
 :RUNDOCKER
 
