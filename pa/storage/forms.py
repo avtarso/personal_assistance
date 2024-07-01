@@ -1,7 +1,7 @@
 # storage/forms.py
 from django import forms
 from django.conf import settings
-
+from django.forms import TextInput
 
 from .models import UploadedFile, FileTag
 
@@ -48,4 +48,6 @@ class UploadedFileEditForm(forms.ModelForm):
 
 
 class FileFindForm(forms.Form):
-    find_text = forms.CharField(label='', max_length=255, required=False)
+    find_text = forms.CharField(label='', max_length=255, required=False, widget=TextInput(
+            attrs={"class": "form-control", "placeholder": "Text to find in files", "id": "find_text"}
+        ))

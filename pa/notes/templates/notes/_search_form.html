@@ -1,16 +1,26 @@
 <ul class="by_name">
-    <form action="{% url 'notes:by_name' %}" method="post">
+    <form class="search-form" action="{% url 'notes:by_name' %}" method="post">
         {% csrf_token %}
-        <label for="id_name">Search by note`s title:</label>
-        <input type="text" id="id_name" name="name">
-        <input type="submit" value="Search" class="btn btn-primary">
+        <input class="form-control"
+               type="text"
+               id="id_name"
+               name="name"
+               placeholder="Search by note`s title">
+        <input type="submit"
+               value="Search"
+               class="btn btn-light btn-sm border border-1 ms-1">
     </form>
 </ul>
 <ul class="by_tag">
-    <form action="{% url 'notes:by_tag' %}" method="post">
+    <form class="search-form" action="{% url 'notes:by_tag' %}" method="post">
         {% csrf_token %}
-        <label for="id_tag">Search by tag:</label>
-        <input type="text" id="id_tag" name="tag">
-        <input type="submit" value="Search" class="btn btn-primary">
+        <input class="form-control"
+               type="text"
+               id="id_tag"
+               name="tag"
+               placeholder="Search by note`s tag">
+        <input type="submit"
+               value="Search"
+               class="btn btn-light btn-sm border border-1 ms-1">
     </form>
 </ul>

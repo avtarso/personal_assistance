@@ -1,40 +1,40 @@
 {% extends "news/content_right.html" %}
-{% block top %}
-    <div class="row my-4">
-        <div class="col">
-            <div class="d-flex flex-wrap text-center justify-content-between">
-                <a class="news-menu-btn flex-fill btn btn-link btn-sm border border-1 me-1 mb-3 d-block shadow"
-                   href="{% url 'news:economics' %}">
-                    <div class="news-menu-btn-title">Economic News</div>
-                    <div class="small fst-italic">(from ukr.net)</div>
-                </a>
-                <a class="news-menu-btn flex-fill btn btn-link btn-sm border border-1 me-1 mb-3 d-block shadow"
-                   href="{% url 'news:politics' %}">
-                    <div class="news-menu-btn-title">Political News</div>
-                    <div class="small fst-italic">(from ukr.net)</div>
-                </a>
-                <a class="news-menu-btn flex-fill btn btn-link btn-sm border border-1 me-1 mb-3 d-block shadow"
-                   href="{% url 'news:weather' %}">
-                    <div class="news-menu-btn-title">Weather</div>
-                    <div class="small fst-italic">(from meteo.ua)</div>
-                </a>
-                <a class="news-menu-btn flex-fill btn btn-link btn-sm border border-1 me-1 mb-3 d-block shadow"
-                   href="{% url 'news:main' %}">
-                    <div class="news-menu-btn-title">Quotes</div>
-                    <div class="small fst-italic">(from quotes.toscrape.com)</div>
-                </a>
-            </div>
-        </div>
-    </div>
-{% endblock top %}
-{% block h2 %}
+{% block left_content %}
+    <ul>
+        <li>
+            <a class="news-menu-link" href="{% url 'news:economics' %}">
+                <span class="news-menu-link-title">Economic News</span>
+                <span class="news-menu-link-descr small fst-italic">(from ukr.net)</span>
+            </a>
+        </li>
+        <li>
+            <a class="news-menu-link" href="{% url 'news:politics' %}">
+                <span class="news-menu-link-title">Political News</span>
+                <span class="news-menu-link-descr small fst-italic">(from ukr.net)</span>
+            </a>
+        </li>
+        <li>
+            <a class="news-menu-link" href="{% url 'news:weather' %}">
+                <span class="news-menu-link-title">Weather</span>
+                <span class="news-menu-link-descr small fst-italic">(from meteo.ua)</span>
+            </a>
+        </li>
+        <li>
+            <a class="news-menu-link" href="{% url 'news:main' %}">
+                <span class="news-menu-link-title">Quotes</span>
+                <span class="news-menu-link-descr small fst-italic">(from quotes.toscrape.com)</span>
+            </a>
+        </li>
+    </ul>
+{% endblock left_content %}
+{% block h4 %}
     {{ h2 }}
-{% endblock h2 %}
+{% endblock h4 %}
 {% block main_content_header %}
     {% with url="news:"|add:news_type|add:"_get" %}
         <div class="row mb-4">
             <div class="col">
-                <div class="text-center">
+                <div>
                     <a title="Update Data"
                        class="news-update-data-btn btn btn-link btn-sm border border-1 shadow-sm"
                        href="{% url url %}">Update Data</a>
