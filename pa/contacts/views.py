@@ -1,6 +1,8 @@
+from datetime import date, timedelta
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 
 from .models import Contact
 from .forms import ContactForm
@@ -88,5 +90,26 @@ def find_contact(request):
         "contacts/search_result.html",
         {
             "contacts": paginator(request, result)
+        }
+    )
+
+
+@login_required
+def upcoming_birthdays(request):
+    today = date.today()
+    end_date = today + timedelta(days=7)
+
+    upcoming_birthdays = Contact.objects.filter(
+        added_by=request.user,
+        birthday__isnull=False,
+        birthday__month__in=[today.month, end_date.month],
+        birthday__day__gte=today.day if today.month == end_date.month else 1,
+        birthday__day__lte=end_date.day if today.month == end_date.month else 31
+    ).order_by('-birthday')
+    return render(
+        request,
+        "contacts/contacts.html",
+        {
+            "contacts": paginator(request, upcoming_birthdays)
         }
     )
