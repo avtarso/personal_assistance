@@ -51,6 +51,7 @@ def send_birthday_reminders():
         message = f"Dear {user.username},\n\n" \
                   f"The following contacts have birthdays coming up in the next week:\n\n" \
                   f"{contact_details}\n\n" \
+                  f"You can see full information on https://personalassistance-production.up.railway.app/contacts/\n\n" \
                   f"Best regards,\nYour Personal Assistance"
         
         send_mail(
