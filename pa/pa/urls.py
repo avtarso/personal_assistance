@@ -20,6 +20,7 @@ from django.urls import include, path, re_path
 from quotes import views as quotes_views
 from users import views as user_views
 from storage import views as storage_views
+from . import views
 
 from .api import NewsQuoteResource
 
@@ -34,5 +35,6 @@ urlpatterns = [
     path("quotes/", include("quotes.urls")),
     path("news/", include("news.urls")),
     path("storage/", include("storage.urls")),
+    path("random_quote_api/", views.random_quote_api, name="random_quote_api"),
     re_path(r"^api/", include(news_quote_resource.urls)),
 ]

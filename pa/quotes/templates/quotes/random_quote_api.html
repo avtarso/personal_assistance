@@ -1,0 +1,36 @@
+{% extends 'quotes/base.html' %}
+
+{% block title %}Contacts{% endblock %}
+
+{% block content%}
+
+<section class="_content_block_1">
+    <div class="wr">
+      <div class="_15cacd0c">
+        <div class="_content_left_block">
+          <header class="_af4fe10b">
+            <h2 class="_060ab2a4">Features</h2>
+            Random Quote API
+          </header>
+        </div>
+        <div class="_content_right_block">
+          <div class="_3f613442">
+            <h4 class="_8239ae20">Random Quote API</h4>
+            <br />
+            <div class="_1b1643a8">
+              <p>A registered user can receive a random quote by sending the following request:</p>
+              <pre>
+curl -u "user:user" -H "Accept: application/json" 
+https://personalassistance-production.up.railway.app/api/news_quote/
+              </pre>
+              <p>values "username:password" ​​must be replaced with real ones</p>
+
+              <br /><a href="/api/news_quote/?format=json" class="_c288f4a7">Example for registred user</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  {% endblock %}
