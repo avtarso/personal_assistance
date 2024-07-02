@@ -45,9 +45,3 @@ class UploadedFileEditForm(forms.ModelForm):
     class Meta:
         model = UploadedFile
         fields = ['attention_date', 'tags', 'description']
-
-
-class FileFindForm(forms.Form):
-    find_text = forms.CharField(label='', max_length=255, required=False, widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Text to find in files", "id": "find_text"}
-        ))
