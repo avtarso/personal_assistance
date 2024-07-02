@@ -17,6 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path, re_path
+from django.conf.urls import handler404
 from quotes import views as quotes_views
 from users import views as user_views
 from storage import views as storage_views

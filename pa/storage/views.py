@@ -81,7 +81,7 @@ def file_list(request):
 @login_required
 def download_file(request, file_id):
     try:
-        uploaded_file = get_object_or_404(UploadedFile, id=file_id)
+        uploaded_file = get_object_or_404(UploadedFile, id=file_id, user_id=request.user.id)
         telegram_file_id = uploaded_file.telegram_file_id
         tg_token = settings.TELEGRAM_TOKEN
         tg_file_info_url = f'https://api.telegram.org/bot{tg_token}/getFile?file_id={telegram_file_id}'
@@ -109,13 +109,13 @@ def download_file(request, file_id):
 
 @login_required
 def delete_file(request, file_id):
-    uploaded_file = get_object_or_404(UploadedFile, id=file_id)
+    uploaded_file = get_object_or_404(UploadedFile, id=file_id, user_id=request.user.id)
     return render(request, 'storage/delete_file_confirm.html', {'file': uploaded_file})
 
 
 @login_required
 def delete_file_confirmed(request, file_id):
-    uploaded_file = get_object_or_404(UploadedFile, id=file_id)
+    uploaded_file = get_object_or_404(UploadedFile, id=file_id, user_id=request.user.id)
     telegram_bot_token = settings.TELEGRAM_TOKEN
     chat_id = settings.TELEGRAM_CHAT
     response = requests.post(f'https://api.telegram.org/bot{telegram_bot_token}/deleteMessage',
@@ -151,13 +151,13 @@ def tag_list(request):
 
 @login_required
 def delete_tag(request, tag_id):
-    tag = get_object_or_404(FileTag, id=tag_id)
+    tag = get_object_or_404(FileTag, id=tag_id, added_by=request.user)
     return render(request, 'storage/delete_tag_confirm.html', {'tag': tag})
 
 
 @login_required
 def delete_tag_confirmed(request, tag_id):
-    tag = get_object_or_404(FileTag, id=tag_id)
+    tag = get_object_or_404(FileTag, id=tag_id, added_by=request.user)
     tag.delete()
     return redirect('storage:tag_list')
 
@@ -177,7 +177,7 @@ def tag_none(request):
 
 @login_required
 def edit_tag(request, tag_id):
-    tag = get_object_or_404(FileTag, id=tag_id)
+    tag = get_object_or_404(FileTag, id=tag_id, added_by=request.user)
     if request.method == 'POST':
         form = FileTagForm(request.POST, instance=tag)
         form.save()
