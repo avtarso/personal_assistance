@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # "fontawesomefree",
     "tastypie",
-    "quotes",
     "notes",
     "users",
     "news",

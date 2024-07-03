@@ -23,7 +23,7 @@
             <div class="wr">
                 <div class="_f4c879d8">
                     <div class="_9698a7cf" style="--gap: 1; font-size: 16px">
-                        <a href="{% url 'main' %}">
+                        <a href="{% url 'main_page' %}">
                             <div class="_f7a17dd3" style="--scale: 1">
                                 <img src="{% static '_pa_logo.png' %}" />
                             </div>
@@ -34,11 +34,11 @@
                         <div class="um-nav-children"></div>
                         {% if user.is_authenticated %}
                             <ul class="um-nav-links">
-                                {% include 'quotes/_auth_menu.html' %}
+                                {% include '_auth_menu.html' %}
                             </ul>
                         {% endif %}
                         {% if not user.is_authenticated %}
-                            <div class="um-nav-buttons">{% include 'quotes/_not_auth_menu.html' %}</div>
+                            <div class="um-nav-buttons">{% include '_not_auth_menu.html' %}</div>
                         {% endif %}
                     </nav>
                     <button id="kmw87btk3o-drawerTrigger"
@@ -62,10 +62,10 @@
                             </button>
                         </header>
                         {% if user.is_authenticated %}
-                            <div class="um-drawer-links">{% include 'quotes/_auth_menu.html' %}</div>
+                            <div class="um-drawer-links">{% include '_auth_menu.html' %}</div>
                         {% endif %}
                         {% if not user.is_authenticated %}
-                            <div class="um-drawer-buttons">{% include 'quotes/_not_auth_menu.html' %}</div>
+                            <div class="um-drawer-buttons">{% include '_not_auth_menu.html' %}</div>
                         {% endif %}
                     </div>
                     <script>

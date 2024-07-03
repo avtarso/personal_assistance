@@ -18,7 +18,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path, re_path
 from django.conf.urls import handler404
-from quotes import views as quotes_views
 from users import views as user_views
 from storage import views as storage_views
 from . import views
@@ -29,11 +28,10 @@ news_quote_resource = NewsQuoteResource()
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", quotes_views.top_10_tag_list, name="main"),
+    path("", views.main_page, name="main_page"),
     path("", include("notes.urls")),
     path("", include("contacts.urls")),
     path("users/", include("users.urls")),
-    path("quotes/", include("quotes.urls")),
     path("news/", include("news.urls")),
     path("storage/", include("storage.urls")),
     path("random_quote_api/", views.random_quote_api, name="random_quote_api"),

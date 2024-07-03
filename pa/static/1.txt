@@ -1,1 +1,0 @@
-/home/user/Documents/vcs_python/web10_jango/bestquotes/static/1.txt
