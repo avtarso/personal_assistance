@@ -5,6 +5,18 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import Note, Tag
 
 
+def paginator(request, data):
+    paginator = Paginator(data, 5)  # Number elements on page
+    page = request.GET.get('page', 1)
+    try:
+        data_paginated = paginator.page(page)
+    except PageNotAnInteger:
+        data_paginated = paginator.page(1)
+    except EmptyPage:
+        data_paginated = paginator.page(paginator.num_pages)
+    return data_paginated
+
+
 @login_required
 def note(request, id):
     note = get_object_or_404(Note, id=id, added_by=request.user)
@@ -125,14 +137,3 @@ def by_tag_name(request, name):
         }
     )
 
-
-def paginator(request, data):
-    paginator = Paginator(data, 5)  # Number elements on page
-    page = request.GET.get('page', 1)
-    try:
-        data_paginated = paginator.page(page)
-    except PageNotAnInteger:
-        data_paginated = paginator.page(1)
-    except EmptyPage:
-        data_paginated = paginator.page(paginator.num_pages)
-    return data_paginated
