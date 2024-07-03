@@ -1,9 +1,32 @@
-# personal.assistant.project
+# Personal Assistant APP
 
-This Django application allows you to store and manage the user's contacts, records and files. It is also possible to aggregate news and weather forecast
+Personal Assistant is a Django application that allows you to store and manage a registered user's contacts, posts, and files. It is also possible to aggregate news and weather forecasts.
 
+## Features
 
-1. To start, first of all, it is necessary to have and install variables
+- User authentication and authorization
+- Upload and download files
+- Create, delete and edit descriptions of downloaded files
+- Schedule a file review time
+- Create, delete and edit contacts
+- Schedule a file review time
+- Notify about the time of a contact's birthday
+- Create, delete and edit notes
+- Random quote API
+- Aggregate news on selected topics
+
+## Setup
+
+To run the Personal Assistant on your local system, you will need to install several prerequisites and then set up the application. Follow the instructions below to get started.
+
+### Prerequisites
+
+Before installing the application, make sure you have the following software installed:
+
+- [Git](https://git-scm.com/) - Version control system for cloning the repository.
+- [Python](https://www.python.org/) - Programming language required for running the Django microservice.
+
+### Set up variables
 
 for Ubuntu Add to file .bashrc strings
 ```
@@ -34,12 +57,12 @@ setx PA_HOST="localhost"
 setx PA_DB_PORT="5432"
 ```
 
-2. To run on a local machine
+### To run on a local machine
+
 - for Ubuntu/Linux - run `./first_run.sh`
 - for Windows - run `first_run.bat`
 
-3. Enjoy if you can:)
-
+### Enjoy if you can:)
 
 other files for Ubuntu/linx:
 r.sh - start send reminder birthdays
