@@ -35,8 +35,8 @@ setx PA_DB_PORT="5432"
 ```
 
 2. To run on a local machine
-- for for Ubuntu/Linux - run `./first_run.sh`
-- fo Windows - run `first_run.bat` and `first_run_next.bat`
+- for Ubuntu/Linux - run `./first_run.sh`
+- for Windows - run `first_run.bat`
 
 3. Enjoy if you can:)
 
