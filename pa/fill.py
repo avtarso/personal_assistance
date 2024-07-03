@@ -14,6 +14,8 @@ from contacts.models import Contact
 
 username = "user"
 password = "user"
+username2 = "username"
+password2 = "password"
 file_path = 'first_start.py'
 
 notes = [
@@ -93,4 +95,5 @@ if __name__ == "__main__":
         with open(file_path, 'w') as file:
             pass
         create_user(username, password)
+        create_user(username2, password2)
         import_data(username)
