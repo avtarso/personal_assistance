@@ -11,4 +11,7 @@ def handler404(request, exception):
 def main_page(request):
     return render(request, "index.html")
 
+def road_map(request):
+    return render(request, "road_map.html")
+
 

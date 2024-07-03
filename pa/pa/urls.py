@@ -35,5 +35,7 @@ urlpatterns = [
     path("news/", include("news.urls")),
     path("storage/", include("storage.urls")),
     path("random_quote_api/", views.random_quote_api, name="random_quote_api"),
+    path("road_map/", views.road_map, name="road_map"),
+
     re_path(r"^api/", include(news_quote_resource.urls)),
 ]
