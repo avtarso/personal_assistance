@@ -14,4 +14,7 @@ def main_page(request):
 def road_map(request):
     return render(request, "road_map.html")
 
+def reviews(request):
+    return render(request, "reviews.html")
+
 

@@ -17,9 +17,6 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path, re_path
-from django.conf.urls import handler404
-from users import views as user_views
-from storage import views as storage_views
 from . import views
 
 from .api import NewsQuoteResource
@@ -36,6 +33,8 @@ urlpatterns = [
     path("storage/", include("storage.urls")),
     path("random_quote_api/", views.random_quote_api, name="random_quote_api"),
     path("road_map/", views.road_map, name="road_map"),
+
+    path("reviews/", views.reviews, name="reviews"),
 
     re_path(r"^api/", include(news_quote_resource.urls)),
 ]
